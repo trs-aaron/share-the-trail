@@ -1,39 +1,23 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>
-            {% block title %}
-            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-            {% wagtail_site as current_site %}
-            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
-            {% endblock %}
-        </title>
+        <title>{% block title %}Campaign Site{% endblock %}</title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/sharethetrail.css' %}">
-
-        {% block extra_css %}
-        {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="/static/media/sm-icon-3.ico">
+        <link rel="stylesheet" href="/static/css/nucleo-icons.css">
+        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/material-kit-pro.css">
+        <link rel="stylesheet" type="text/css" href="{% static '/static/css/sharethetrail.css' %}">
+        <script src="/static/js/popper.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/material-kit-pro.min.js" type="text/javascript"></script>
+        {% block extra_css %}{% endblock %}
     </head>
-
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
-
-        {% block content %}{% endblock %}
-
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/sharethetrail.js' %}"></script>
-
-        {% block extra_js %}
-        {# Override this in templates to add extra javascript #}
-        {% endblock %}
+    <body class="bg-dark">
+        {% block body %}{% endblock %}
     </body>
 </html>

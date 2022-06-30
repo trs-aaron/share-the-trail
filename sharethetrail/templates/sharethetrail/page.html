@@ -1,0 +1,72 @@
+{% extends "../base.html" %}
+
+{% block body %}
+<div class="d-flex flex-column min-vh-100">
+    <header class="sticky-top bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-none z-index-3 py-2">
+            <div class="container">
+                <a class="navbar-brand text-white" href="/" rel="tooltip" title="" data-placement="bottom">
+                    {% if campaign.top_nav_logo is not None %}
+                    {{ campaign.top_nav_logo|safe }}
+                    {% endif %}
+                </a>
+                <button class="navbar-toggler border-white shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon mt-2">
+                        <span class="navbar-toggler-bar bar1 bg-white"></span>
+                        <span class="navbar-toggler-bar bar2 bg-white"></span>
+                        <span class="navbar-toggler-bar bar3 bg-white"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
+                    <ul class="navbar-nav navbar-nav-hover mx-auto">
+                        <li class="nav-item mx-3">
+                            <a class="nav-link fs-5 ps-2 d-flex justify-content-between cursor-pointer align-items-center text-white" role="button" href="/issues">Issues</a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link fs-5 ps-2 d-flex justify-content-between cursor-pointer align-items-center text-white" role="button" href="/candidate">Meet {{ campaign.first_name }}</a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link fs-5 ps-2 d-flex justify-content-between cursor-pointer align-items-center text-white" role="button" href="/involvement">Get Involved</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex flex-row flex-wrap-reverse">
+                        <div class="nav-item my-auto mx-4 py-3">
+                            {% include 'sharethetrail/nav_social_links.html' %}
+                        </div>
+                        {% if campaign.donation_url is not None %}
+                        <a class="nav-item btn btn-lg bg-info mx-4 my-2" role="button" href="{{ campaign.donation_url }}" target="_blank">Donate</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="flex-grow-1">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer mb-1 mt-4 bg-primary">
+        <div class="container">
+            <div class="d-flex flex-row flex-wrap align-items-stretch justify-content-center">
+                <div class="d-flex flex-row flex-grow-1 mx-auto my-1">
+                    {% if campaign.donation_url is not None %}
+                    <a class="nav-item nav-link mx-3 fs-6 text-info opacity-9" href="{{ campaign.donation_url }}" target="_blank">Donate</a>
+                    {% endif %}
+                    {% if campaign.contact_email is not None %}
+                    <a class="nav-item nav-link mx-3 fs-6 text-white opacity-8" href="mailto:{{ campaign.contact_email }}">Contact</a>
+                    {% endif %}
+                    <a class="nav-item nav-link mx-3 fs-6 text-white opacity-8" href="/involvement">Volunteer</a>
+                </div>
+                <div class="d-flex flex-row flex-wrap align-items-baseline">
+                    <div class="px-4 mx-auto my-1 opacity-8">
+                        {% include 'sharethetrail/nav_social_links.html' %}
+                    </div>
+                    <div class="my-1 mx-auto text-white text-xs opacity-6">
+                        <span>Copyright © {% now "Y" %}</span>
+                        <img style="height: 20px; margin-left: 8px;" src="/static/media/svg/trs_logo.svg" alt="The Ronald Solutions"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}

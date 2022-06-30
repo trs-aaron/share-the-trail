@@ -24,9 +24,11 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
-    "home",
+    "sharethetrail",
     "wagtail.contrib.forms",
+    "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
+    'wagtail.contrib.settings',
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -41,8 +43,8 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-    "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.sessions",
     "django.contrib.staticfiles",
 ]
 
@@ -72,6 +74,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "wagtail.contrib.settings.context_processors.settings",
             ],
         },
     },
@@ -82,6 +85,8 @@ WSGI_APPLICATION = "sharethetrail.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DATABASES = {
     "default": {

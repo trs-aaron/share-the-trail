@@ -25,10 +25,13 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
     "sharethetrail",
+    "coderedcms",
+    "bootstrap4",
+    "modelcluster",
+    "taggit",
+    "wagtailseo",
     "wagtail.contrib.forms",
-    "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
-    'wagtail.contrib.settings',
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -36,10 +39,11 @@ INSTALLED_APPS = [
     "wagtail.documents",
     "wagtail.images",
     "wagtail.search",
+    "wagtail.core",
+    "wagtail.contrib.settings",
+    "wagtail.contrib.modeladmin",
+    "wagtail.contrib.table_block",
     "wagtail.admin",
-    "wagtail",
-    "modelcluster",
-    "taggit",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -49,6 +53,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'wagtailcache.cache.UpdateCacheMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -56,7 +61,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    'django.middleware.security.SecurityMiddleware',
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    'wagtailcache.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = "sharethetrail.urls"
@@ -147,15 +154,20 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "../../data/media")
-MEDIA_URL = "/media/"
+MEDIA_URL = "media/"
 
+# Login
+LOGIN_URL = 'wagtailadmin_login'
+LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "sharethetrail"
+
+WAGTAIL_ENABLE_UPDATE_CHECK = False
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
@@ -168,3 +180,19 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
+
+# Bootstrap
+BOOTSTRAP4 = {
+    # set to blank since coderedcms already loads jquery and bootstrap
+    'jquery_url': '',
+    'base_url': '',
+    # remove green highlight on inputs
+    'success_css_class': ''
+}
+
+# Tags
+TAGGIT_CASE_INSENSITIVE = True
+
+# Sets default for primary key IDs
+# See https://docs.djangoproject.com/en/3.2/ref/models/fields/#bigautofield
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

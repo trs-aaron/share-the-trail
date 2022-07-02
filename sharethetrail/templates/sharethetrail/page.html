@@ -1,68 +1,67 @@
 {% extends "../base.html" %}
 
 {% block body %}
-<div class="d-flex flex-column min-vh-100">
-    <header class="sticky-top bg-primary">
-        <nav class="navbar navbar-expand-lg navbar-dark shadow-none z-index-3 py-2">
-            <div class="container">
-                <a class="navbar-brand text-white" href="/" rel="tooltip" title="" data-placement="bottom">
-                    {% if campaign.top_nav_logo is not None %}
-                    {{ campaign.top_nav_logo|safe }}
-                    {% endif %}
-                </a>
-                <button class="navbar-toggler border-white shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon mt-2">
-                        <span class="navbar-toggler-bar bar1 bg-white"></span>
-                        <span class="navbar-toggler-bar bar2 bg-white"></span>
-                        <span class="navbar-toggler-bar bar3 bg-white"></span>
-                    </span>
-                </button>
-                <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
-                    <ul class="navbar-nav navbar-nav-hover mx-auto">
-                        <li class="nav-item mx-3">
-                            <a class="nav-link fs-5 ps-2 d-flex justify-content-between cursor-pointer align-items-center text-white" role="button" href="/issues">Issues</a>
-                        </li>
-                        <li class="nav-item mx-3">
-                            <a class="nav-link fs-5 ps-2 d-flex justify-content-between cursor-pointer align-items-center text-white" role="button" href="/candidate">Meet {{ campaign.first_name }}</a>
-                        </li>
-                        <li class="nav-item mx-3">
-                            <a class="nav-link fs-5 ps-2 d-flex justify-content-between cursor-pointer align-items-center text-white" role="button" href="/involvement">Get Involved</a>
-                        </li>
-                    </ul>
-                    <div class="d-flex flex-row flex-wrap-reverse">
-                        <div class="nav-item my-auto mx-4 py-3">
-                            {% include 'sharethetrail/nav_social_links.html' %}
-                        </div>
-                        {% if campaign.donation_url is not None %}
-                        <a class="nav-item btn btn-lg bg-info mx-4 my-2" role="button" href="{{ campaign.donation_url }}" target="_blank">Donate</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
+<div class="d-flex flex-column min-100">
+    <nav class="navbar navbar-expand-lg bg-primary sticky-top p-3">
+        <a class="navbar-brand text-light" href="/">
+            {% if campaign.top_nav_logo is not None %}
+            {{ campaign.top_nav_logo|safe }}
+            {% endif %}
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#stt-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="stt-navbar-collapse" class="d-lg-flex flex-grow-1 collapse min m-0 mt-3 mt-lg-0">
+            <ul class="navbar-nav flex-grow-1 align-self-end justify-content-center">
+                <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
+                    <a class="nav-link p-0" role="button" href="/issues">Issues</a>
+                </li>
+                <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
+                    <a class="nav-link p-0" role="button" href="/candidate">Meet {{ campaign.first_name }}</a>
+                </li>
+                <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
+                    <a class="nav-link p-0" role="button" href="/involvement">Get Involved</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav flex-lg-row-reverse">
+                {% if campaign.donation_url is not None %}
+                <li class="nav-item flex-grow-1 justify-content-center mx-5 mx-lg-2 my-2 ">
+                    <a class="nav-link btn btn-lg btn-info" role="button" href="{{ campaign.donation_url }}" target="_blank">Donate</a>
+                </li>
+                {% endif %}
+                <li class="nav-item flex-grow-1 justify-content-center mx-5 mx-lg-2 my-2 ">
+                    {% include 'sharethetrail/nav_social_links.html' %}
+                </li>
+            </ul>
+        </div>
+    </nav>
     <main class="flex-grow-1">
         {% block content %}{% endblock %}
     </main>
-    <footer class="footer mb-1 mt-4 bg-primary">
+    <footer class="footer footer-default">
         <div class="container">
-            <div class="d-flex flex-row flex-wrap align-items-stretch justify-content-center">
-                <div class="d-flex flex-row flex-grow-1 mx-auto my-1">
+            <div class="d-flex flex-row flex-wrap align-items-center justify-content-around">
+                <div class="d-flex flex-row flex-wrap align-items-center">
                     {% if campaign.donation_url is not None %}
-                    <a class="nav-item nav-link mx-3 fs-6 text-info opacity-9" href="{{ campaign.donation_url }}" target="_blank">Donate</a>
+                    <a class="nav-item nav-link text-info" href="{{ campaign.donation_url }}" target="_blank">Donate</a>
                     {% endif %}
+                    <a class="nav-item nav-link text-light" href="/involvement">Join</a>
                     {% if campaign.contact_email is not None %}
-                    <a class="nav-item nav-link mx-3 fs-6 text-white opacity-8" href="mailto:{{ campaign.contact_email }}">Contact</a>
+                    <a class="nav-item nav-link text-light" href="mailto:{{ campaign.contact_email }}">Contact</a>
                     {% endif %}
-                    <a class="nav-item nav-link mx-3 fs-6 text-white opacity-8" href="/involvement">Volunteer</a>
                 </div>
-                <div class="d-flex flex-row flex-wrap align-items-baseline">
-                    <div class="px-4 mx-auto my-1 opacity-8">
+                <div class="d-flex flex-row flex-wrap align-items-center">
+                    <nav class="nav px-4 mx-auto my-1 text-light">
                         {% include 'sharethetrail/nav_social_links.html' %}
-                    </div>
-                    <div class="my-1 mx-auto text-white text-xs opacity-6">
-                        <span>Copyright © {% now "Y" %}</span>
-                        <img style="height: 20px; margin-left: 8px;" src="/static/media/svg/trs_logo.svg" alt="The Ronald Solutions"/>
+                    </nav>
+                    <div class="mx-auto my-1 text-light">
+                        <small>Copyright © {% now "Y" %}</small>
+                        <a href="https://theronald.solutions">
+                            <img style="height: 1.25rem; margin-left: 0.5rem;" src="/static/media/svg/trs_logo.svg" alt="The Ronald Solutions"/>
+                        </a>
                     </div>
                 </div>
             </div>

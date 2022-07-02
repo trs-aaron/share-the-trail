@@ -1,0 +1,10 @@
+{% extends "sharethetrail/page.html" %}
+{% load static coderedcms_tags i18n wagtailcore_tags wagtailimages_tags wagtailsettings_tags wagtailuserbar %}
+{% get_settings %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% wagtail_site as site %}
+
+{% block body_content %}
+{% include_block page.body with settings=settings %}
+{% endblock %}

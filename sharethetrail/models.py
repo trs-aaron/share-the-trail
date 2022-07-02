@@ -76,10 +76,10 @@ class Campaign(Model):
     ])
 
 
-class Page(codered_models.Page):
+class CampaignPageMixin:
 
     def get_context(self, request):
-        context = super(Page, self).get_context(request)
+        context = super(CampaignPageMixin, self).get_context(request)
         site = wagtail_models.Site.find_for_request(request)
         context['campaign'] = Campaign.objects.filter(site=site).first()
         return context
@@ -88,5 +88,97 @@ class Page(codered_models.Page):
         abstract = True
 
 
-class HomePage(Page):
-    pass
+class WebPage(CampaignPageMixin, codered_models.CoderedWebPage):
+
+    template = "sharethetrail/web_page.html"
+
+    parent_page_types = [
+        wagtail_models.Page,
+    ]
+
+    class Meta:
+        verbose_name = 'Web Page'
+
+
+class ArticlePage(CampaignPageMixin, codered_models.CoderedArticlePage):
+
+    template = "sharethetrail/web_page.html"
+
+    parent_page_types = [
+        WebPage,
+    ]
+
+    subpage_types = [
+        WebPage,
+    ]
+
+    class Meta:
+        verbose_name = 'Article Page'
+        ordering = ['-first_published_at']
+
+
+class ArticleIndexPage(CampaignPageMixin, codered_models.CoderedArticleIndexPage):
+
+    template = "sharethetrail/web_page.html"
+
+    parent_page_types = [
+        WebPage,
+    ]
+
+    subpage_types = [
+        ArticlePage,
+    ]
+
+    class Meta:
+        verbose_name = 'Article Index Page'
+
+
+# class EventPage(CampaignPageMixin, codered_models.CoderedEventPage):
+#
+#     subpage_types = [
+#         WebPage,
+#     ]
+
+
+# class EventIndexPage(CampaignPageMixin, codered_models.CoderedEventPage):
+#
+#     subpage_types = [
+#         EventPage,
+#     ]
+
+
+class LocationPage(CampaignPageMixin, codered_models.CoderedLocationPage):
+
+    template = "sharethetrail/web_page.html"
+
+    parent_page_types = [
+        WebPage,
+    ]
+
+    subpage_types = [
+        ArticlePage,
+        ArticleIndexPage,
+        # EventPage,
+        # EventIndexPage,
+        WebPage,
+    ]
+
+    class Meta:
+        verbose_name = 'Location Page'
+
+
+class HomePage(WebPage):
+
+    template = "sharethetrail/home_page.html"
+
+    subpage_types = [
+        ArticlePage,
+        ArticleIndexPage,
+        # EventPage,
+        # EventIndexPage,
+        LocationPage,
+        WebPage
+    ]
+
+    class Meta:
+        verbose_name = 'Home Page'

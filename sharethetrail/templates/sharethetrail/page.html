@@ -1,8 +1,8 @@
 {% extends "../base.html" %}
 
 {% block body %}
-<div class="d-flex flex-column min-100">
-    <nav class="navbar navbar-expand-lg bg-primary sticky-top p-3">
+<div class="d-flex flex-column min-vh-100 min-vw-100">
+    <nav class="navbar navbar-expand-lg sticky-top shadow-none bg-primary p-3">
         <a class="navbar-brand text-light" href="/">
             {% if campaign.top_nav_logo is not None %}
             {{ campaign.top_nav_logo|safe }}
@@ -39,7 +39,7 @@
         </div>
     </nav>
     <main class="flex-grow-1">
-        {% block content %}{% endblock %}
+        {% block body_content %}{% endblock %}
     </main>
     <footer class="footer footer-default">
         <div class="container">

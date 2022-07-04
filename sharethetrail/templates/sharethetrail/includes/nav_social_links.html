@@ -1,26 +1,26 @@
 <div class="d-flex flex-row align-items-center justify-content-center">
     {% if campaign.twitter_url is not None %}
-    <a class="mx-2 text-light" href="{{ campaign.twitter_url }}" target="_blank">
+    <a class="mx-2 {{ icon_class }}" href="{{ campaign.twitter_url }}" target="_blank">
         <i class="fab fa-twitter"></i>
     </a>
     {% endif %}
     {% if campaign.facebook_url is not None %}
-    <a class="mx-2 text-light" href="{{ campaign.facebook_url }}" target="_blank">
+    <a class="mx-2 {{ icon_class }}" href="{{ campaign.facebook_url }}" target="_blank">
         <i class="fab fa-facebook"></i>
     </a>
     {% endif %}
     {% if campaign.instagram_url is not None %}
-    <a class="mx-2 text-light" href="{{ campaign.instagram_url }}" target="_blank">
+    <a class="mx-2 {{ icon_class }}" href="{{ campaign.instagram_url }}" target="_blank">
         <i class="fab fa-instagram"></i>
     </a>
     {% endif %}
     {% if campaign.youtube_url is not None %}
-    <a class="mx-2 text-light" href="{{ campaign.youtube_url }}" target="_blank">
+    <a class="mx-2 {{ icon_class }}" href="{{ campaign.youtube_url }}" target="_blank">
         <i class="fab fa-youtube"></i>
     </a>
     {% endif %}
     {% if campaign.vimeo_url is not None %}
-    <a class="mx-2 text-light" href="{{ campaign.vimeo_url }}" target="_blank">
+    <a class="mx-2 {{ icon_class }}" href="{{ campaign.vimeo_url }}" target="_blank">
         <i class="fab fa-vimeo"></i>
     </a>
     {% endif %}

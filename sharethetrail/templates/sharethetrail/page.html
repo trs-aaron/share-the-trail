@@ -1,71 +1,16 @@
 {% extends "../base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailsettings_tags %}
 
 {% block body %}
-<div class="d-flex flex-column min-vh-100 min-vw-100">
-    <nav class="navbar navbar-expand-lg sticky-top shadow-none bg-primary p-3">
-        <a class="navbar-brand text-light" href="/">
-            {% if campaign.top_nav_logo is not None %}
-            {{ campaign.top_nav_logo|safe }}
-            {% endif %}
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#stt-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon"></span>
-            <span class="navbar-toggler-icon"></span>
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="stt-navbar-collapse" class="d-lg-flex flex-grow-1 collapse min m-0 mt-3 mt-lg-0">
-            <ul class="navbar-nav flex-grow-1 align-self-end justify-content-center">
-                <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
-                    <a class="nav-link p-0" role="button" href="/issues">Issues</a>
-                </li>
-                <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
-                    <a class="nav-link p-0" role="button" href="/candidate">Meet {{ campaign.first_name }}</a>
-                </li>
-                <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
-                    <a class="nav-link p-0" role="button" href="/involvement">Get Involved</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav flex-lg-row-reverse">
-                {% if campaign.donation_url is not None %}
-                <li class="nav-item flex-grow-1 justify-content-center mx-5 mx-lg-2 my-2 ">
-                    <a class="nav-link btn btn-lg btn-info" role="button" href="{{ campaign.donation_url }}" target="_blank">Donate</a>
-                </li>
-                {% endif %}
-                <li class="nav-item flex-grow-1 justify-content-center mx-5 mx-lg-2 my-2 ">
-                    {% include 'sharethetrail/nav_social_links.html' %}
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <main class="flex-grow-1">
+<div class="d-flex flex-column min-vh-100 bg-primary">
+    {% include 'sharethetrail/includes/top_navigation.html' %}
+    {% if page.cover_image is not None %}
+    {% image page.cover_image height-400 as cover_image %}
+    <div class="page-header" style="height: 40vh; background: url({{ cover_image.url }}) no-repeat center; background-size: cover;" data-parallax="true"></div>
+    {% endif %}
+    <main class="main main-raised bg-secondary">
         {% block body_content %}{% endblock %}
     </main>
-    <footer class="footer footer-default">
-        <div class="container">
-            <div class="d-flex flex-row flex-wrap align-items-center justify-content-around">
-                <div class="d-flex flex-row flex-wrap align-items-center">
-                    {% if campaign.donation_url is not None %}
-                    <a class="nav-item nav-link text-info" href="{{ campaign.donation_url }}" target="_blank">Donate</a>
-                    {% endif %}
-                    <a class="nav-item nav-link text-light" href="/involvement">Join</a>
-                    {% if campaign.contact_email is not None %}
-                    <a class="nav-item nav-link text-light" href="mailto:{{ campaign.contact_email }}">Contact</a>
-                    {% endif %}
-                </div>
-                <div class="d-flex flex-row flex-wrap align-items-center">
-                    <nav class="nav px-4 mx-auto my-1 text-light">
-                        {% include 'sharethetrail/nav_social_links.html' %}
-                    </nav>
-                    <div class="mx-auto my-1 text-light">
-                        <small>Copyright © {% now "Y" %}</small>
-                        <a href="https://theronald.solutions">
-                            <img style="height: 1.25rem; margin-left: 0.5rem;" src="/static/media/svg/trs_logo.svg" alt="The Ronald Solutions"/>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    {% include 'sharethetrail/includes/footer.html' %}
 </div>
 {% endblock %}

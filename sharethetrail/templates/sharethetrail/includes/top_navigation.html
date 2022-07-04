@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg sticky-top shadow-none m-0 py-3 px-4 px-lg-5 rounded-0 bg-primary">
+    <a class="navbar-brand" href="/">
+        {% if campaign.top_nav_logo is not None %}
+        {{ campaign.top_nav_logo|safe }}
+        {% endif %}
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#stt-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="stt-navbar-collapse" class="d-lg-flex flex-grow-1 collapse min m-0 mt-3 mt-lg-0">
+        <ul class="navbar-nav flex-grow-1 align-self-end justify-content-center">
+            <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
+                <a class="nav-link p-0 text-transform-none text-small-caps letter-spacing-md" role="button" href="/issues">
+                    <span class="h3">Issues</span>
+                </a>
+            </li>
+            <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
+                <a class="nav-link p-0 text-transform-none text-small-caps letter-spacing-md" role="button" href="/candidate">
+                    <span class="h3">Meet {{ campaign.first_name }}</span>
+                </a>
+            </li>
+            <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
+                <a class="nav-link p-0 text-transform-none text-small-caps letter-spacing-md" role="button" href="/involvement">
+                    <span class="h3">Get Involved</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav flex-lg-row-reverse">
+            {% if campaign.donation_url is not None %}
+            <li class="nav-item flex-grow-1 justify-content-center mx-5 mx-lg-2 my-2 ">
+                <a class="nav-link btn btn-lg btn-info" role="button" href="{{ campaign.donation_url }}" target="_blank">Donate</a>
+            </li>
+            {% endif %}
+            <li class="nav-item flex-grow-1 justify-content-center mx-5 mx-lg-2 my-2 ">
+                {% include 'sharethetrail/includes/nav_social_links.html' with icon_class="text-white" %}
+            </li>
+        </ul>
+    </div>
+</nav>

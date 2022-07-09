@@ -9,8 +9,8 @@ class CampaignAdmin(ModelAdmin):
     menu_order = 100
     add_to_settings_menu = True
     exclude_from_explorer = False
-    list_display = ("site", "first_name", "last_name", "election_office",)
-    list_filter = ("first_name", "last_name", "election_office",)
+    list_display = ("site", "first_name", "last_name", "election_position",)
+    list_filter = ("first_name", "last_name", "election_position",)
     search_fields = ("first_name", "last_name",)
 
 

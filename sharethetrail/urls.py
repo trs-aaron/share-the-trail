@@ -13,7 +13,7 @@ urlpatterns = [
     path('django-admin/', admin.site.urls),
     path('admin/', include(coderedadmin_urls)),
     path("", include(wagtail_urls)),
-    #path('docs/', include(wagtaildocs_urls)),
+    path('documents/', include(wagtaildocs_urls)),
     #path('search/', include(coderedsearch_urls)),
     path('', include(codered_urls)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

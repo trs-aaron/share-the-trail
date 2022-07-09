@@ -7,8 +7,9 @@
         <title>{% block title %}Campaign Site{% endblock %}</title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/x-icon" href="{% static 'media/sm-icon-3.ico' %}" />
+        <link rel="icon" type="image/x-icon" href="{% block fav_icon %}{% static 'default.ico' %}{% endblock %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'css/share-the-trail_theme-1.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
         <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
         <script src="{% static 'js/lib/jquery.min.js' %}"></script>
         <script src="{% static 'js/lib/popper.min.js' %}"></script>

@@ -1,6 +1,8 @@
-#Django>=4.0,<4.1
-#wagtail>=3.0,<3.1
+# Django>=4.0,<4.1
+# wagtail>=3.0,<3.1
 coderedcms==0.24.*
-django-sass
-django_sendmail_backend
-#psycopg2
+wagtail-themes
+django-storages
+boto3
+psycopg2
+#django-iam-dbauth

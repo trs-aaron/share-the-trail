@@ -1,35 +1,53 @@
+import os
+from environ import Env
 from .base import *
 
-DEBUG = False
-SECRET_KEY = os.getenv('SECRET_KEY')
-SITE_ID = os.getenv('SITE_ID')
+env = Env()
+env.read_env()
+
+DEBUG = env('DEBUG')
+SECRET_KEY = env('SECRET_KEY')
+SITE_ID = env.str('SITE_ID', default='test')
 WAGTAIL_SITE_NAME = SITE_ID
 
 ALLOWED_HOSTS = [
-    os.getenv('ALLOWED_HOSTS')
+    '3.137.207.202',
+    'sharethetrail.net',
+    '.sharethetrail.net',
+    'sharethetrail.democrat',
+    '.sharethetrail.democrat',
+    'sharethetrail.republican',
+    '.sharethetrail.republican',
+    'sharethetrail.run',
+    '.sharethetrail.run',
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + [
     'wagtailcache',
-    'storages'
+    'storages',
 ]
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': SITE_ID,
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env.int('DB_PORT', 5432),
     }
 }
 
-AWS_STORAGE_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
-AWS_DEFAULT_ACL = 'public-read'
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_STORAGE_BUCKET_NAME = env('S3_BUCKET_NAME')
+AWS_DEFAULT_ACL = None
+AWS_CLOUDFRONT_DOMAIN = env.str('MEDIA_HOST', default='media.sharethetrail.net')
+AWS_S3_CUSTOM_DOMAIN = AWS_CLOUDFRONT_DOMAIN
+AWS_LOCATION = SITE_ID
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3ManifestStaticStorage'
+# MEDIA_HOST = env.str('MEDIA_HOST', default='static.sharethetrail.net')
 # STATIC_LOCATION = 'static'
 # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
 
@@ -37,9 +55,10 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesSto
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "static/"
 
-DEFAULT_FILE_STORAGE = 'dstorages.backends.s3boto3.S3Boto3Storage'
-PUBLIC_MEDIA_LOCATION = 'media'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_LOCATION = f'{AWS_LOCATION}/media/'
+MEDIA_ROOT = f'/{MEDIA_LOCATION}'
+MEDIA_URL = f'{AWS_CLOUDFRONT_DOMAIN}/{MEDIA_LOCATION}'
 
 WAGTAIL_THEME_PATH = STATIC_URL + "/css/themes"
 

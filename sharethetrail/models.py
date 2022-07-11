@@ -1,14 +1,17 @@
+from django.conf import settings
+from django.forms import Select
 from django.db.models import CharField, DateField, EmailField, ForeignKey, Model, OneToOneField, URLField, SET_NULL
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, ObjectList, StreamFieldPanel, TabbedInterface
-from wagtail.contrib.settings.models import BaseSetting
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Site
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.documents.models import Document
 from coderedcms import models as codered_models
 from sharethetrail.blocks import PageNavLinkBlock, RepresentativePositionBlock, URLNavLinkBlock
-
 from xml.dom import minidom
+
+
+THEMES = getattr(settings, "SHARETHETRAIL_THEMES", list())
 
 
 class Campaign(Model):
@@ -17,6 +20,9 @@ class Campaign(Model):
     last_name = CharField(max_length=100, db_column='name_last', blank=True, null=True)
     election_primary_date = DateField(db_column='election_date_primary', blank=True, null=True)
     election_general_date = DateField(db_column='election_date_general', blank=True, null=True)
+    site = OneToOneField(Site, on_delete=SET_NULL, blank=True, null=True)
+    site_title = CharField(db_column='site_title', max_length=100, blank=True, null=True)
+    site_theme = CharField(db_column='site_theme', max_length=100, blank=True, null=True)
     contact_email = EmailField(db_column='email_contact', blank=True, null=True)
     media_email = EmailField(db_column='email_media', blank=True, null=True)
     fav_icon = ForeignKey(Document, blank=True, null=True, related_name='+', on_delete=SET_NULL)
@@ -27,14 +33,15 @@ class Campaign(Model):
     instagram_url = URLField(db_column='url_instagram', blank=True, null=True)
     youtube_url = URLField(db_column='url_youtube', blank=True, null=True)
     vimeo_url = URLField(db_column='url_vimeo', blank=True, null=True)
-    site = OneToOneField(Site, on_delete=SET_NULL, blank=True, null=True)
 
     election_position = StreamField(
         [
             ('Representative', RepresentativePositionBlock()),
         ],
-        min_num=1,
+        min_num=0,
         max_num=1,
+        blank=True,
+        null=True,
     )
 
     top_nav_links = StreamField(
@@ -68,6 +75,8 @@ class Campaign(Model):
         MultiFieldPanel(
             [
                 FieldPanel('site', heading='Site', help_text='Site'),
+                FieldPanel('site_title', heading='Title', help_text='Site title'),
+                FieldPanel('site_theme', heading='Theme', help_text='Site theme', widget=Select(choices=THEMES)),
                 DocumentChooserPanel('fav_icon'),
                 FieldPanel('contact_email', heading='Email - General', help_text='Email for general inquiries'),
                 FieldPanel('media_email', heading='Email - Media', help_text='Email for media inquiries'),
@@ -109,9 +118,10 @@ class CampaignPageMixin:
         context = super(CampaignPageMixin, self).get_context(request)
         site = Site.find_for_request(request)
         campaign = Campaign.objects.filter(site=site).first()
-
         campaign.top_nav_logo_svg = minidom.parse(campaign.top_nav_logo.file).toxml() if campaign.top_nav_logo else None
         context['campaign'] = campaign
+        context['title'] = campaign.site_title
+        context['theme'] = campaign.site_theme
         return context
 
     class Meta:

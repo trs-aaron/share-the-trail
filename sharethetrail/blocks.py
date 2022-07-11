@@ -20,7 +20,7 @@ class PageNavLinkBlock(NavLinkBlock):
 
 
 class URLNavLinkBlock(NavLinkBlock):
-    link = URLBlock(label="link", required=True)
+    link = CharBlock(label="link", required=True)
 
 
 class PositionBlock(StructBlock):

@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     "wagtail.snippets",
     "wagtail.admin",
     "wagtailseo",
-    'wagtailthemes',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -45,7 +44,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     'wagtailcache.cache.FetchFromCacheMiddleware',
-    'wagtailthemes.middleware.ThemeMiddleware',
 ]
 
 ROOT_URLCONF = "sharethetrail.urls"
@@ -109,15 +107,17 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "static"),
 ]
 
-WAGTAIL_THEMES = [
+SHARETHETRAIL_THEMES = [
     ("share-the-trail_theme-1", "Share The Trail - 1"),
     ("share-the-trail_theme-2", "Share The Trail - 2"),
 ]
 
+SHARETHETRAIL_DEFAULT_THEME = "share-the-trail_theme-1"
+
 LOGIN_URL = 'wagtailadmin_login'
 LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # WAGTAILSEARCH_BACKENDS = {
 #     "default": {

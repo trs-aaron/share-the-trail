@@ -14,21 +14,22 @@
     </button>
     <div id="stt-navbar-collapse" class="d-lg-flex flex-grow-1 collapse min m-0 mt-3 mt-lg-0">
         <ul class="navbar-nav flex-grow-1 align-self-end justify-content-center">
+            {% for link in campaign.top_nav_links %}
+            {% if link.block_type == 'page_link' %}
             <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
-                <a class="nav-link p-0 text-transform-none text-small-caps letter-spacing-md" role="button" href="/issues">
-                    <span class="h3">Issues</span>
+                <a class="nav-link p-0 text-transform-none text-small-caps letter-spacing-md" role="button" href="{{ link.value.link.url }}">
+                    <span class="h3">{{ link.value.title }}</span>
                 </a>
             </li>
+            {% endif %}
+            {% if link.block_type == 'url_link' %}
             <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
-                <a class="nav-link p-0 text-transform-none text-small-caps letter-spacing-md" role="button" href="/candidate">
-                    <span class="h3">Meet {{ campaign.first_name }}</span>
+                <a class="nav-link p-0 text-transform-none text-small-caps letter-spacing-md" role="button" href="{{ link.value.link }}">
+                    <span class="h3">{{ link.value.title }}</span>
                 </a>
             </li>
-            <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
-                <a class="nav-link p-0 text-transform-none text-small-caps letter-spacing-md" role="button" href="/involvement">
-                    <span class="h3">Get Involved</span>
-                </a>
-            </li>
+            {% endif %}
+            {% endfor %}
         </ul>
         <ul class="navbar-nav flex-lg-row-reverse">
             {% if campaign.donation_url is not None %}

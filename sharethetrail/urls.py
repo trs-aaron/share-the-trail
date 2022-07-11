@@ -5,19 +5,24 @@ from django.contrib import admin
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from coderedcms import admin_urls as coderedadmin_urls
-from coderedcms import search_urls as coderedsearch_urls
 from coderedcms import urls as codered_urls
+from sharethetrail.views import error_400, error_403, error_404, error_500
 
+
+handler400 = error_400
+handler403 = error_403
+handler404 = error_404
+handler500 = error_500
 
 urlpatterns = [
     path('django-admin/', admin.site.urls),
     path('admin/', include(coderedadmin_urls)),
     path("", include(wagtail_urls)),
     path('documents/', include(wagtaildocs_urls)),
-    #path('search/', include(coderedsearch_urls)),
     path('', include(codered_urls)),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
 
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     from django.conf.urls.static import static

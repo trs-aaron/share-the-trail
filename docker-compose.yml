@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  web:
+    build: python manage.py migrate
+    command: python manage.py runserver 0.0.0.0:8080
+    volumes:
+      - .:/sharethetrail-site
+    ports:
+      - "8080:8080"

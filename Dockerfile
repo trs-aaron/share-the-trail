@@ -24,5 +24,4 @@ RUN chown -R stt:stt /usr/bin/sharethetrail-site
 USER stt
 
 ENTRYPOINT ["python", "manage.py"]
-CMD ["migrate"]
 CMD ["runserver", "0.0.0.0:8080"]

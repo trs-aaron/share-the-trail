@@ -64,7 +64,6 @@ TEMPLATES = [
                 "wagtail.contrib.settings.context_processors.settings",
             ],
             "loaders": [
-                "wagtailthemes.loaders.ThemeLoader",
                 "django.template.loaders.filesystem.Loader",
                 "django.template.loaders.app_directories.Loader",
             ],

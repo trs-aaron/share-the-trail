@@ -2,3 +2,5 @@
 *.iml
 __pycache__/
 *.py[cod]
+
+push-prod.sh

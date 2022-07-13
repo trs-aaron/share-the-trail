@@ -6,4 +6,4 @@ Resources:
         TaskDefinition: <TASK_DEFINITION>
         LoadBalancerInfo:
           ContainerName: "sharethetrail-site"
-          ContainerPort: 443
+          ContainerPort: 8080

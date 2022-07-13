@@ -1,15 +1,15 @@
 {
-  "family": "sharethetrail-task-prod",
+  "family": "sharethetrail-site-task-prod",
   "executionRoleArn": "arn:aws:iam::409773212980:role/sharethetrail-ecs-task-execution_role",
   "taskRoleArn": "arn:aws:iam::409773212980:role/sharethetrail-ecs-task_role",
-  "cpu": "768",
-  "memory": "768",
+  "cpu": "512",
+  "memory": "512",
   "containerDefinitions": [
     {
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/sharethetrail-prod-task",
+          "awslogs-group": "/ecs/sharethetrail-site-prod-task",
           "awslogs-region": "us-east-2",
           "awslogs-stream-prefix": "ecs"
         }
@@ -68,7 +68,7 @@
           "value": "demo"
         }
       ],
-      "memory": 768,
+      "memory": 512,
       "image": "<IMAGE1_NAME>",
       "name": "sharethetrail-site"
     }

@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - VERSION_TAG=$COMMIT_HASH
+  build:
+    commands:
+      - docker build -t $REPOSITORY_URI:$VERSION_TAG .
+      - docker tag $REPOSITORY_URI:$VERSION_TAG $REPOSITORY_URI:latest
+      - docker tag $REPOSITORY_URI:$VERSION_TAG $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - docker push $REPOSITORY_URI --all-tags
+      - printf '[{"name":"sharethetrail-site","imageUri":"%s"}]' $REPOSITORY_URI:$VERSION_TAG > imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json

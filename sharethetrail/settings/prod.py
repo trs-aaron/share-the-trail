@@ -5,9 +5,10 @@ from .base import *
 env = Env()
 env.read_env()
 
-DEBUG = env('DEBUG')
+DEBUG = env('DEBUG', default=False)
 SECRET_KEY = env('SECRET_KEY')
 SITE_ID = env.str('SITE_ID', default='test')
+ADMIN_HOST = env.str('ADMIN_HOST', default='sharethetrail.net')
 WAGTAIL_SITE_NAME = SITE_ID
 
 ALLOWED_HOSTS = [
@@ -20,11 +21,17 @@ ALLOWED_HOSTS = [
     '.sharethetrail.republican',
     'sharethetrail.run',
     '.sharethetrail.run',
+    '*',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    f'https://{ADMIN_HOST}'
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + [
     'wagtailcache',
     'storages',
+    'health_check.contrib.s3boto3_storage',
 ]
 
 DATABASES = {
@@ -51,7 +58,7 @@ AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 # STATIC_LOCATION = 'static'
 # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
 
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "static/"
 

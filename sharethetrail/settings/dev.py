@@ -14,7 +14,7 @@ DATABASES = {
     }
 }
 
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "static/"
 

@@ -33,9 +33,9 @@ INSTALLED_APPS = [
     'health_check',
     'health_check.db',
     'health_check.cache',
-    'health_check.storage',
     'health_check.contrib.migrations',
     'health_check.contrib.psutil',
+    'health_check.storage',
 ]
 
 MIDDLEWARE = [
@@ -124,12 +124,11 @@ LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-# WAGTAILSEARCH_BACKENDS = {
-#     "default": {
-#         "BACKEND": "wagtail.search.backends.database",
-#     }
-# }
-
+WAGTAILSEARCH_BACKENDS = {
+    "default": {
+        "BACKEND": "wagtail.search.backends.database",
+    }
+}
 
 BOOTSTRAP4 = {
     # set to blank since coderedcms already loads jquery and bootstrap

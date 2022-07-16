@@ -2,6 +2,7 @@ from .base import *
 
 DEBUG = True
 SECRET_KEY = "django-insecure-8+-j3rwqe6!p4(^q-6254p@r065j(jci(h75$ij$$(u3j6wj&f"
+SITE_TYPE = 'site'
 SITE_ID = 'dev'
 WAGTAIL_SITE_NAME = SITE_ID
 

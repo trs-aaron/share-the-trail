@@ -15,7 +15,8 @@ phases:
   post_build:
     commands:
       - docker push $REPOSITORY_URI --all-tags
-      - printf '[{"name":"sharethetrail-site","imageUri":"%s","version":"%s"}]' $REPOSITORY_URI:$VERSION_TAG $VERSION_TAG > imagedefinitions.json
+      - IMAGE_URI=$REPOSITORY_URI:$VERSION_TAG
+      - printf '[{"name":"sharethetrail-site","imageUri":"%s"},{"name":"sharethetrail-site-migrate","imageUri":"%s"}]' $IMAGE_URI $IMAGE_URI > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json

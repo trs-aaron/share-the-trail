@@ -7,6 +7,7 @@ env.read_env()
 DEBUG = env.bool("DEBUG", default=False)
 SECRET_KEY = "django-insecure-8+-j3rwqe6!p4(^q-6254p@r065j(jci(h75$ij$$(u3j6wj&f"
 SITE_TYPE = env.str("SITE_TYPE", default="site")
+SITE_VERSION = env.str("SITE_VERSION")
 
 ALLOWED_HOSTS = [
     "*",
@@ -16,9 +17,9 @@ AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID", default=None)
 AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY", default=None)
 AWS_S3_REGION_NAME = env.str("AWS_S3_REGION", default="us-east-2")
 
-STATICFILES_STORAGE = "storages.backends.s3boto3.S3ManifestStaticStorage"
+STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 AWS_STORAGE_BUCKET_NAME = env.str("STATIC_BUCKET_NAME", default="sharethetrail-static")
-AWS_LOCATION = f'{SITE_TYPE}/'
+AWS_LOCATION = f'{SITE_TYPE}/{SITE_VERSION}/'
 AWS_DEFAULT_ACL = None
 
 STATIC_S3_REGION = env.str("STATIC_S3_REGION", default=AWS_S3_REGION_NAME)

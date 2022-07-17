@@ -8,6 +8,7 @@ DEBUG = env.bool("DEBUG", default=False)
 SECRET_KEY = env.str("SECRET_KEY")
 SITE_TYPE = env.str("SITE_TYPE", default="site")
 SITE_ID = env.str("SITE_ID", default="test")
+SITE_VERSION = env.str("SITE_VERSION")
 ADMIN_HOST = env.str("ADMIN_HOST", default="sharethetrail.net")
 WAGTAIL_SITE_NAME = SITE_ID
 
@@ -47,9 +48,9 @@ AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", default=None)
 AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", default=None)
 AWS_S3_REGION_NAME = env("AWS_S3_REGION", default="us-east-2")
 
-STATICFILES_STORAGE = "storages.backends.s3boto3.S3ManifestStaticStorage"
+STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 AWS_STORAGE_BUCKET_NAME = env.str("STATIC_BUCKET_NAME", default="sharethetrail-static")
-AWS_LOCATION = f'{SITE_TYPE}/'
+AWS_LOCATION = f'{SITE_TYPE}/{SITE_VERSION}/'
 AWS_S3_CUSTOM_DOMAIN = env.str("STATIC_CLOUDFRONT_DOMAIN", default="static.sharethetrail.net")
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}'
 AWS_DEFAULT_ACL = None

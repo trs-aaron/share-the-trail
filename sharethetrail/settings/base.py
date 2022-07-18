@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.sessions",
     "django.contrib.staticfiles",
+    "corsheaders",
     'health_check',
     'health_check.db',
     'health_check.cache',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'wagtailcache.cache.UpdateCacheMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -50,6 +52,16 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     'wagtailcache.cache.FetchFromCacheMiddleware',
+]
+
+CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https:\/\/\w+\.sharethetrail\.net$",
+    r"^https:\/\/\w+\.sharethetrail\.email$",
+    r"^https:\/\/\w+\.sharethetrail\.run$",
+    r"^https:\/\/\w+\.sharethetrail\.democrat$",
+    r"^https:\/\/\w+\.sharethetrail\.republican$",
 ]
 
 ROOT_URLCONF = "sharethetrail.urls"

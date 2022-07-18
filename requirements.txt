@@ -1,4 +1,5 @@
 coderedcms
+django-cors-headers
 django-environ
 django-health-check
 django-storages

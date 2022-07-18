@@ -127,6 +127,7 @@ STATICFILES_DIRS = [
 SHARETHETRAIL_THEMES = [
     ("share-the-trail_theme-1", "Share The Trail - 1"),
     ("share-the-trail_theme-2", "Share The Trail - 2"),
+    ("share-the-trail_theme-3", "Share The Trail - 3"),
 ]
 
 SHARETHETRAIL_DEFAULT_THEME = "share-the-trail_theme-1"

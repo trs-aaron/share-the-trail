@@ -1,3 +1,5 @@
+{% load static %}
+
 <footer class="footer footer-default">
     <div class="container">
         <div class="d-flex flex-row flex-wrap align-items-center justify-content-around">
@@ -17,7 +19,7 @@
                 <div class="mx-auto my-1">
                     <small class="text-muted">Copyright © {% now "Y" %}</small>
                     <a href="https://theronald.solutions">
-                        <img style="height: 1.25rem; margin-left: 0.5rem;" src="/static/media/svg/trs_logo.svg" alt="The Ronald Solutions"/>
+                        <img style="height: 1.25rem; margin-left: 0.5rem;" src="{% static 'svg/trs_logo.svg' %}" alt="The Ronald Solutions"/>
                     </a>
                 </div>
             </div>

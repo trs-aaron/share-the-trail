@@ -1,7 +1,9 @@
 coderedcms
 django-cors-headers
 django-environ
+django-encrypted-model-fields
 django-health-check
+django-modelcluster
 django-storages
 django_sendmail_backend
 boto3

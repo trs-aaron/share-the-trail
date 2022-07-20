@@ -1,7 +1,7 @@
 {% extends "sharethetrail/base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags wagtailsettings_tags %}
 
-{%  block fav_icon%}{{ campaign.fav_icon.url }}{% endblock %}
+{% block fav_icon %}{{ campaign_site.fav_icon.url }}{% endblock %}
 
 {% block body %}
 <div class="d-flex flex-column min-vh-100 bg-primary">

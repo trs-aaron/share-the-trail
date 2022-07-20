@@ -2,8 +2,9 @@ from .base import *
 
 DEBUG = True
 SECRET_KEY = "django-insecure-8+-j3rwqe6!p4(^q-6254p@r065j(jci(h75$ij$$(u3j6wj&f"
-SITE_TYPE = 'site'
-SITE_ID = 'dev'
+FIELD_ENCRYPTION_KEY = "fNvUX56CncnrOb3T9I_XwuRgeUjc1bZ9EFPOb4zj2n0="
+SITE_TYPE = "site"
+SITE_ID = "dev"
 WAGTAIL_SITE_NAME = SITE_ID
 
 ALLOWED_HOSTS = ["*"]
@@ -21,7 +22,7 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "static/"
 
-DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 MEDIA_ROOT = os.path.join(BASE_DIR, "../../data/media")
 MEDIA_URL = "media/"
 

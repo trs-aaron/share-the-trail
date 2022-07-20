@@ -6,6 +6,7 @@ env.read_env()
 
 DEBUG = env.bool("DEBUG", default=False)
 SECRET_KEY = env.str("SECRET_KEY")
+FIELD_ENCRYPTION_KEY = env.str("FIELD_ENCRYPTION_KEY")
 SITE_TYPE = env.str("SITE_TYPE", default="site")
 SITE_ID = env.str("SITE_ID", default="test")
 SITE_VERSION = env.str("SITE_VERSION")

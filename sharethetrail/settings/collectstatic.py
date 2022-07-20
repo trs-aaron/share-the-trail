@@ -6,6 +6,7 @@ env.read_env()
 
 DEBUG = env.bool("DEBUG", default=False)
 SECRET_KEY = "django-insecure-8+-j3rwqe6!p4(^q-6254p@r065j(jci(h75$ij$$(u3j6wj&f"
+FIELD_ENCRYPTION_KEY = "fNvUX56CncnrOb3T9I_XwuRgeUjc1bZ9EFPOb4zj2n0="
 SITE_TYPE = env.str("SITE_TYPE", default="site")
 SITE_VERSION = env.str("SITE_VERSION")
 

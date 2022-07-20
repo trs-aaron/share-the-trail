@@ -30,17 +30,18 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.sessions",
     "django.contrib.staticfiles",
+    "encrypted_model_fields",
     "corsheaders",
-    'health_check',
-    'health_check.db',
-    'health_check.cache',
-    'health_check.contrib.migrations',
-    'health_check.contrib.psutil',
-    'health_check.storage',
+    "health_check",
+    "health_check.db",
+    "health_check.cache",
+    "health_check.contrib.migrations",
+    "health_check.contrib.psutil",
+    "health_check.storage",
 ]
 
 MIDDLEWARE = [
-    'wagtailcache.cache.UpdateCacheMiddleware',
+    "wagtailcache.cache.UpdateCacheMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -49,9 +50,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
-    'django.middleware.security.SecurityMiddleware',
+    "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    'wagtailcache.cache.FetchFromCacheMiddleware',
+    "wagtailcache.cache.FetchFromCacheMiddleware",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
@@ -91,7 +92,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "sharethetrail.wsgi.application"
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 TAGGIT_CASE_INSENSITIVE = True
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -132,8 +133,8 @@ SHARETHETRAIL_THEMES = [
 
 SHARETHETRAIL_DEFAULT_THEME = "share-the-trail_theme-1"
 
-LOGIN_URL = 'wagtailadmin_login'
-LOGIN_REDIRECT_URL = 'wagtailadmin_home'
+LOGIN_URL = "wagtailadmin_login"
+LOGIN_REDIRECT_URL = "wagtailadmin_home"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
@@ -145,10 +146,10 @@ WAGTAILSEARCH_BACKENDS = {
 
 BOOTSTRAP4 = {
     # set to blank since coderedcms already loads jquery and bootstrap
-    'jquery_url': '',
-    'base_url': '',
+    "jquery_url": "",
+    "base_url": "",
     # remove green highlight on inputs
-    'success_css_class': ''
+    "success_css_class": ""
 }
 
 WAGTAIL_ENABLE_UPDATE_CHECK = False

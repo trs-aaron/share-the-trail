@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from wagtail.core.blocks import CharBlock, PageChooserBlock, StructBlock, URLBlock
+from wagtail.core.blocks import CharBlock, DateBlock, PageChooserBlock, StructBlock, URLBlock
 
 
 class NavLinkBlock(StructBlock):
@@ -16,11 +16,16 @@ class NavLinkBlock(StructBlock):
 
 
 class PageNavLinkBlock(NavLinkBlock):
-    link = PageChooserBlock(label="link", required=True)
+    link = PageChooserBlock(label="Link", required=True)
 
 
 class URLNavLinkBlock(NavLinkBlock):
-    link = CharBlock(label="link", required=True)
+    link = CharBlock(label="Link", required=True)
+
+
+class ImportantDateBlock(StructBlock):
+    date = DateBlock(label="Date", required=True)
+    title = CharBlock(label="Title", required=True)
 
 
 class PositionBlock(StructBlock):

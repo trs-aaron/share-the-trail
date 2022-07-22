@@ -258,37 +258,39 @@ class CampaignIssue(Model):
         return f'{self.campaign } - {self.issue}/'
 
 
+def get_campaign_site_context(request):
+    site = Site.find_for_request(request)
+    campaign_site = site.campaign_sites.select_related('campaign').first()
+
+    site_context = {
+        'theme': DEFAULT_THEME,
+        'title': None,
+        'fav_icon': None,
+        'top_nav_logo_svg': None,
+        'top_nav_links': [],
+        'footer_links': [],
+        'paid_for_by': None,
+        'campaign': None,
+    }
+
+    if campaign_site is not None:
+        site_context['theme'] = getattr(campaign_site, 'theme', DEFAULT_THEME)
+        site_context['title'] = getattr(campaign_site, 'title', None)
+        site_context['fav_icon'] = campaign_site.fav_icon
+        site_context['top_nav_logo_svg'] = minidom.parse(campaign_site.top_nav_logo.file).toxml() if campaign_site.top_nav_logo else None
+        site_context['top_nav_links'] = campaign_site.top_nav_links
+        site_context['footer_links'] = campaign_site.footer_links
+        site_context['paid_for_by'] = campaign_site.paid_for_by
+        site_context['campaign'] = campaign_site.campaign
+
+    return site_context
+
+
 class CampaignSitePageMixin:
 
     def get_context(self, request):
         context = super(CampaignSitePageMixin, self).get_context(request)
-        site = Site.find_for_request(request)
-        # campaign_site = CampaignSite.objects.select_related('campaign').filter(sites__in=site).first()
-        campaign_site = site.campaign_sites.select_related('campaign').first()
-
-        site_context = {
-            'theme': DEFAULT_THEME,
-            'title': None,
-            'fav_icon': None,
-            'top_nav_logo_svg': None,
-            'top_nav_links': [],
-            'footer_links': [],
-            'paid_for_by': None,
-            'campaign': None,
-        }
-
-        if campaign_site is not None:
-            site_context['theme'] = getattr(campaign_site, 'theme', DEFAULT_THEME)
-            site_context['title'] = getattr(campaign_site, 'title', None)
-            site_context['fav_icon'] = campaign_site.fav_icon
-            site_context['top_nav_logo_svg'] = minidom.parse(campaign_site.top_nav_logo.file).toxml() if campaign_site.top_nav_logo else None
-            site_context['top_nav_links'] = campaign_site.top_nav_links
-            site_context['footer_links'] = campaign_site.footer_links
-            site_context['paid_for_by'] = campaign_site.paid_for_by
-            site_context['campaign'] = campaign_site.campaign
-
-        context['campaign_site'] = site_context
-
+        context['campaign_site'] = get_campaign_site_context(request)
         return context
 
     class Meta:

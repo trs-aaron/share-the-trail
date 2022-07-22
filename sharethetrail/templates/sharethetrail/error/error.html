@@ -1,0 +1,10 @@
+{% extends "sharethetrail/page.html" %}
+
+{% block title %}Page not found{% endblock %}
+
+{% block body_content %}
+<div class="d-flex flex-column flex-grow-1 align-items-center justify-content-center mx-4 my-2">
+    <p class="h2 text-center text-info mx-0 mb-2 mt-0">{{ error_title }}</p>
+    <p class="h3 text-center text-white mx-0 mb-0 mt-2">{{ error_msg }}</p>
+</div>
+{% endblock %}

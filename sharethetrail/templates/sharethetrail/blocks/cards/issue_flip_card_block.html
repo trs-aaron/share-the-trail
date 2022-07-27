@@ -1,0 +1,30 @@
+{% load  wagtailcore_tags wagtailimages_tags %}
+
+<div class="col-lg-4 col-md-6">
+    <div class="rotating-card-container my-3">
+        <div class="card card-rotate card-background mx-0 my-0">
+            {% image value.front_image fill-600x600 as front_image %}
+            <div class="front front-background" style="background-image: url('{{ front_image.url }}');">
+                <div class="card-body">
+                    <h3 class="card-title align-self-end">{{ value.title }}</h3>
+                </div>
+                <div class="card-footer justify-content-center">
+                    <div class="btn btn-just-icon btn-round" style="background-color: {{ value.color }}">
+                        <i class="material-icons">refresh</i>
+                    </div>
+                </div>
+            </div>
+            {% if value.back_image is not None %}
+            {% image value.back_image fill-600x600 as back_image %}
+            <div class="back back-background" style="background-image: url('{{ back_image.url }}');">
+            {% else %}
+            <div class="back back-background" style="background-color: {{ value.color }}">
+            {% endif %}
+                <div class="card-body flex-grow-1">
+                    <h3 class="card-title mb-4">{{ value.title }}</h3>
+                    <p class="card-description">{{ value.statement }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

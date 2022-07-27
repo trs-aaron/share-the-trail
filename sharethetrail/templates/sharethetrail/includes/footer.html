@@ -4,15 +4,14 @@
     <div class="d-flex flex-row flex-wrap flex-grow-1 align-items-center justify-content-between mx-4">
         <div class="d-flex flex-row flex-wrap align-items-center mx-auto">
             {% if campaign_site.campaign.donation_url is not None %}
-            <a class="nav-item nav-link text-info font-weight-bold text-all-small-caps letter-spacing-md" href="{{ campaign_site.campaign.donation_url }}" target="_blank">Donate</a>
+            <a class="nav-item nav-link text-info font-weight-bold text-all-small-caps letter-spacing-md" href="{{ campaign_site.campaign.donation_url }}" target="_blank">
+                <span>Donate</span>
+            </a>
             {% endif %}
             {% for link in campaign_site.footer_links %}
-            {% if link.block_type == 'page_link' %}
-            <a class="nav-item nav-link text-light text-all-small-caps letter-spacing-md" href="{{ link.value.link.url }}">{{ link.value.title }}</a>
-            {% endif %}
-            {% if link.block_type == 'url_link' %}
-            <a class="nav-item nav-link text-light text-all-small-caps letter-spacing-md" href="{{ link.value.link }}">{{ link.value.title }}</a>
-            {% endif %}
+            <a class="nav-item nav-link text-light text-all-small-caps letter-spacing-md" href="{{ link.url }}" {% if link.is_external_link is True %}target="_blank"{% endif %}>
+                <span>{{ link.title }}</span>
+            </a>
             {% endfor %}
         </div>
         <div class="d-flex flex-row flex-wrap-reverse flex-grow-1 align-items-center">

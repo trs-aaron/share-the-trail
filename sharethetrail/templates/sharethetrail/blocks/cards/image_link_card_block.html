@@ -1,0 +1,14 @@
+{% load  wagtailcore_tags wagtailimages_tags %}
+
+{% image value.image width-600 as image %}
+<div class="col-lg-4 col-md-6 d-flex align-items-center">
+    <div class="card card-plain mx-0 my-3">
+        <div class="card-header card-header-image">
+            <a href="{{ value.url }}" {% if value.is_external_link is True %}target="_blank"{% endif %}>
+                <img class="img" src="{{ image.url }}">
+            </a>
+            <div class="colored-shadow" style="background-image: url('{{ image.url }}'); opacity: 1;"></div>
+        </div>
+    </div>
+</div>
+

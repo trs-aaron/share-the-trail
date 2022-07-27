@@ -42,6 +42,6 @@ class RepresentativePositionBlock(PositionBlock):
     seat = CharBlock(label="Seat", required=True)
 
     class Meta:
-        label = 'Page Navigation Link'
-        icon = 'link'
+        label = 'Representative Position'
+        icon = 'pick'
         value_class = RepresentativePositionValue

@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>{% block title %}{% if title %}{{ title }}{% else %}Campaign Site{% endif %}{% endblock %}</title>
+        <title>{% block title %}{% if campaign_site.title %}{{ campaign_site.title }}{% else %}Campaign Site{% endif %}{% endblock %}</title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/x-icon" href="{% block fav_icon %}{% static 'icon/default.ico' %}{% endblock %}" />

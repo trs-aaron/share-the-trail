@@ -1,30 +1,36 @@
+{% extends "sharethetrail/blocks/cards/grid_card_base.html" %}
 {% load  wagtailcore_tags wagtailimages_tags %}
 
-<div class="col-lg-4 col-md-6">
-    <div class="rotating-card-container my-3">
-        <div class="card card-rotate card-background mx-0 my-0">
-            {% image value.front_image fill-600x600 as front_image %}
-            <div class="front front-background" style="background-image: url('{{ front_image.url }}');">
-                <div class="card-body">
-                    <h3 class="card-title align-self-end">{{ value.title }}</h3>
+{% block card_content %}
+<div class="rotating-card-container m-0">
+    <div class="card card-rotate">
+        {% image value.front_image fill-600x600 as front_image %}
+        <div class="front front-background" style="background-image: url('{{ front_image.url }}');">
+            <div class="card-body p-4">
+                <div class="card-title d-flex flex-column flex-grow-1 justify-content-center">
+                    <h3 class="h3 font-weight-bold text-all-small-caps letter-spacing-small">{{ value.title }}</h3>
                 </div>
-                <div class="card-footer justify-content-center">
-                    <div class="btn btn-just-icon btn-round" style="background-color: {{ value.color }}">
-                        <i class="material-icons">refresh</i>
+                <div class="footer text-center">
+                    <div class="stats text-center">
+                        <div class="btn btn-just-icon btn-fill btn-round" style="background-color: {{ value.color }}">
+                            <i class="material-icons">refresh</i>
+                            <div class="ripple-container"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            {% if value.back_image is not None %}
-            {% image value.back_image fill-600x600 as back_image %}
-            <div class="back back-background" style="background-image: url('{{ back_image.url }}');">
-            {% else %}
-            <div class="back back-background" style="background-color: {{ value.color }}">
-            {% endif %}
-                <div class="card-body flex-grow-1">
-                    <h3 class="card-title mb-4">{{ value.title }}</h3>
-                    <p class="card-description">{{ value.statement }}</p>
-                </div>
+        </div>
+        {% if value.back_image is not None %}
+        {% image value.back_image fill-600x600 as back_image %}
+        <div class="back back-background" style="background-image: url('{{ back_image.url }}');">
+        {% else %}
+        <div class="back back-background" style="background-color: {{ value.color }}">
+        {% endif %}
+            <div class="card-body p-4">
+                <div class="h3 card-title font-weight-bolder text-all-small-caps letter-spacing-small mb-4">{{ value.title }}</div>
+                <div class="card-description d-flex flex-column flex-grow-1 justify-content-center">{{ value.statement }}</div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}

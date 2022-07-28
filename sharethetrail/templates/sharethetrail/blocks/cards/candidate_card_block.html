@@ -1,6 +1,6 @@
 {% load  wagtailcore_tags wagtailimages_tags %}
 
-<div class="card card-profile card-wide-lg">
+<div class="card card-profile card-wide-lg mb-0">
     <div class="card-header card-header-image">
         {% image value.image height-800 as image %}
         <img class="img" src="{{ image.url }}" />
@@ -8,7 +8,7 @@
         <div class="colored-shadow colored-shadow-big" style="background-image: url('{{ image.url }}'); opacity: 1;"></div>
     </div>
     <div class="card-body ">
-        <h5 class="card-title text-primary mb-0">{{ campaign_site.candidate.full_name }}</h5>
+        <h3 class="card-title text-primary mb-0">{{ campaign_site.candidate.full_name }}</h3>
         <h6 class="card-category text-dark mb-0 mt-1">{{ campaign_site.election_position.heading }}</h6>
         <h6 class="card-title text-inverse mb-0 mt-1">{{ campaign_site.election_position.subheading }}</h6>
         <div class="card-description mt-4 align-self-start">{{ value.statement }}</div>

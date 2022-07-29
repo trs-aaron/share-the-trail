@@ -16,7 +16,7 @@
         <ul class="navbar-nav flex-grow-1 align-self-end justify-content-center">
             {% for link in campaign_site.top_nav_links %}
             <li class="nav-item mx-5 mx-lg-3 my-2 my-lg-0">
-                <a class="nav-link p-0 text-transform-none text-small-caps letter-spacing-md" role="button" href="{{ link.url }}" {% if link.is_external_link is True %}target="_blank"{% endif %}>
+                <a class="nav-link p-0 text-transform-none text-small-caps letter-spacing-md" role="button" href="{{ link.href }}" {% if link.is_external_link is True %}target="_blank"{% endif %}>
                     <span class="h3">{{ link.title }}</span>
                 </a>
             </li>

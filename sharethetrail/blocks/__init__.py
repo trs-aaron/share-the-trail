@@ -30,3 +30,15 @@ LAYOUT_BLOCKS = [
     ('cardgrid', CardGridBlock(CARD_GRID_BLOCKS)),
     ('html', RawHTMLBlock(icon='code', form_classname='monospace', label='HTML')),
 ]
+
+NAV_LINK_BLOCKS = [
+    ('page_link', PageNavLinkBlock()),
+    ('url_link', URLNavLinkBlock()),
+    ('email_link', EmailNavLinkBlock()),
+    ('phone_link', PhoneNavLinkBlock()),
+    ('sms_link', SMSNavLinkBlock()),
+]
+
+CAMPAIGN_POSITION_BLOCKS = [
+    ('representative', RepresentativePositionBlock()),
+]

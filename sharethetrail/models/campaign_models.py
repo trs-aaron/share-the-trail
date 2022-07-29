@@ -10,7 +10,7 @@ from wagtail.core.fields import StreamField
 from wagtail.core.models import Site
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.documents.models import Document
-from sharethetrail.blocks import ImportantDateBlock, PageNavLinkBlock, RepresentativePositionBlock, URLNavLinkBlock
+from sharethetrail.blocks import CAMPAIGN_POSITION_BLOCKS, ImportantDateBlock, NAV_LINK_BLOCKS
 from xml.dom import minidom
 
 THEMES = getattr(settings, 'SHARETHETRAIL_THEMES', list())
@@ -115,9 +115,7 @@ class Campaign(Model):
     action_network_api_key = EncryptedCharField(db_column='api_key_action_network', max_length=50, blank=True, null=True)
 
     election_position = StreamField(
-        [
-            ('representative', RepresentativePositionBlock()),
-        ],
+        CAMPAIGN_POSITION_BLOCKS,
         db_column='election_position',
         min_num=0,
         max_num=1,
@@ -191,10 +189,7 @@ class CampaignSite(ClusterableModel):
     top_nav_logo = ForeignKey(Document, db_column='logo_top_nav', blank=True, null=True, related_name='+', on_delete=django_models.SET_NULL)
 
     top_nav_links = StreamField(
-        [
-            ('page_link', PageNavLinkBlock()),
-            ('url_link', URLNavLinkBlock()),
-        ],
+        NAV_LINK_BLOCKS,
         db_column='links_top_nav',
         min_num=0,
         max_num=4,
@@ -203,10 +198,7 @@ class CampaignSite(ClusterableModel):
     )
 
     footer_links = StreamField(
-        [
-            ('page_link', PageNavLinkBlock()),
-            ('url_link', URLNavLinkBlock()),
-        ],
+        NAV_LINK_BLOCKS,
         db_column='links_footer',
         min_num=0,
         max_num=4,

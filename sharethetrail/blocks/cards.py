@@ -1,10 +1,11 @@
 from wagtail.core.blocks import BooleanBlock, CharBlock, PageChooserBlock, RichTextBlock, StructBlock, StructValue, URLBlock
 from wagtail.images.blocks import ImageChooserBlock
-
+from wagtail.snippets.blocks import SnippetChooserBlock
+from sharethetrail.models.snippets import MapSnippet
 
 class CandidateCardBlock(StructBlock):
     image = ImageChooserBlock(label='Image', required=True)
-    show_position = BooleanBlock(label='Show Position Information', required=True)
+    show_position = BooleanBlock(label='Show Position Information', required=False)
     statement = RichTextBlock(label='Statement', required=True)
 
     class Meta:
@@ -14,8 +15,9 @@ class CandidateCardBlock(StructBlock):
 
 
 class ElectionInformationCardBlock(StructBlock):
-    show_position = BooleanBlock(label='Show Position Information', required=True)
-    show_important_dates = BooleanBlock(label='Show Position Information', required=True)
+    show_position = BooleanBlock(label='Show Position Information', required=False)
+    show_important_dates = BooleanBlock(label='Show Position Information', required=False)
+    map = SnippetChooserBlock(MapSnippet, label='Map', required=False)
 
     class Meta:
         label = 'Election Information Card'

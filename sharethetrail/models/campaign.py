@@ -10,7 +10,8 @@ from wagtail.core.fields import StreamField
 from wagtail.core.models import Site
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.documents.models import Document
-from sharethetrail.blocks import CAMPAIGN_POSITION_BLOCKS, ImportantDateBlock, NAV_LINK_BLOCKS
+from sharethetrail.blocks import CAMPAIGN_POSITION_BLOCKS, NAV_LINK_BLOCKS
+from sharethetrail.blocks.campaign import ImportantDateBlock
 from xml.dom import minidom
 
 THEMES = getattr(settings, 'SHARETHETRAIL_THEMES', list())
@@ -300,5 +301,6 @@ def get_campaign_site_context(request):
         site_context['campaign'] = campaign_site.campaign
         site_context['candidate'] = campaign_site.campaign.candidate
         site_context['election_position'] = campaign_site.campaign.election_position[0].value
+        site_context['important_dates'] = map(lambda d: d.value, campaign_site.campaign.important_dates) if campaign_site.campaign.important_dates else None
 
     return site_context

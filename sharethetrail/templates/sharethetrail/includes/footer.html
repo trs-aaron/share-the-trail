@@ -2,14 +2,14 @@
 
 <footer class="footer footer-default px-lg-4">
     <div class="d-flex flex-row flex-wrap flex-grow-1 align-items-center justify-content-between mx-4">
-        <div class="d-flex flex-row flex-wrap align-items-center justify-content-center mx-auto">
+        <div class="d-flex flex-row flex-wrap flex-column-gap-4 flex-row-gap-1 align-items-center justify-content-center mb-2 mx-auto">
             {% if campaign_site.campaign.donation_url is not None %}
-            <a class="nav-item nav-link text-info font-weight-bold text-all-small-caps letter-spacing-md" href="{{ campaign_site.campaign.donation_url }}" target="_blank">
+            <a class="nav-item nav-link text-info font-weight-bold text-all-small-caps letter-spacing-md p-0" href="{{ campaign_site.campaign.donation_url }}" target="_blank">
                 <span>Donate</span>
             </a>
             {% endif %}
             {% for link in campaign_site.footer_links %}
-            <a class="nav-item nav-link text-light text-all-small-caps letter-spacing-md" href="{{ link.href }}" {% if link.is_external_link is True %}target="_blank"{% endif %}>
+            <a class="nav-item nav-link text-light text-all-small-caps letter-spacing-md p-0" href="{{ link.href }}" {% if link.is_external_link is True %}target="_blank"{% endif %}>
                 <span>{{ link.title }}</span>
             </a>
             {% endfor %}

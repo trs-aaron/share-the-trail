@@ -1,0 +1,8 @@
+{% load wagtailimages_tags %}
+
+<div>
+    <a href="{{ value.map_url }}" target="_blank">
+        {% image value.preview_image width-600 as image %}
+        <img class="img h-100 w-100" src="{{ image.url }}"/>
+    </a>
+</div>

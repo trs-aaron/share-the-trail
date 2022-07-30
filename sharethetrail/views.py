@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from sharethetrail.models import get_campaign_site_context
+from sharethetrail.models.campaign import get_campaign_site_context
 
 
 def render_with_campaign_site_context(request, template_name, context=None, status=200):

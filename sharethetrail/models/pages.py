@@ -1,9 +1,9 @@
 from django.utils.html import strip_tags
 from django.utils.safestring import mark_safe
-from wagtail.core.models import Page, StreamField
+from wagtail.core.models import StreamField
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from coderedcms.models import CoderedPage
-from .campaign_models import get_campaign_site_context
+from sharethetrail.models.campaign import get_campaign_site_context
 from sharethetrail.blocks import LAYOUT_BLOCKS
 
 
@@ -19,7 +19,7 @@ class CampaignSitePageMixin:
 
 
 class WebPage(CampaignSitePageMixin, CoderedPage):
-    template = 'sharethetrail/web_page.html'
+    template = 'sharethetrail/pages/web_page.html'
 
     body = StreamField(LAYOUT_BLOCKS, null=True, blank=True)
 
@@ -39,7 +39,7 @@ class WebPage(CampaignSitePageMixin, CoderedPage):
 
 
 class HomePage(CampaignSitePageMixin, CoderedPage):
-    template = 'sharethetrail/home_page.html'
+    template = 'sharethetrail/pages/home_page.html'
 
     body = StreamField(LAYOUT_BLOCKS, null=True, blank=True)
 

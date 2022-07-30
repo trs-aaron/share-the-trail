@@ -1,6 +1,6 @@
-from .campaign_blocks import *
-from .card_blocks import *
-from .site_blocks import *
+from . import campaign
+from . import cards
+from . import site
 
 from wagtail.core.blocks import RawHTMLBlock, RichTextBlock
 from coderedcms.blocks import CardGridBlock, GridBlock, ReusableContentBlock
@@ -12,16 +12,16 @@ HTML_BLOCKS = [
 ]
 
 CARD_GRID_BLOCKS = [
-    ('election_info_card', ElectionInformationCardBlock(icon='pick', label='Election Information Card')),
-    ('image_card', ImageCardBlock(icon='image', label='Image Card')),
-    ('image_page_link_card', ImagePageLinkCardBlock(icon='image', label='Image Page Link Card')),
-    ('image_url_link_card', ImageURLLinkCardBlock(icon='image', label='Image URL Link Card')),
-    ('issue_flip_card', IssueFlipCardBlock(icon='list-ul', label='Issue Flip Card')),
+    ('election_info_card', cards.ElectionInformationCardBlock(icon='pick', label='Election Information Card')),
+    ('image_card', cards.ImageCardBlock(icon='image', label='Image Card')),
+    ('image_page_link_card', cards.ImagePageLinkCardBlock(icon='image', label='Image Page Link Card')),
+    ('image_url_link_card', cards.ImageURLLinkCardBlock(icon='image', label='Image URL Link Card')),
+    ('issue_flip_card', cards.IssueFlipCardBlock(icon='list-ul', label='Issue Flip Card')),
 
 ]
 
 CONTENT_BLOCKS = CARD_GRID_BLOCKS + [
-    ('candidate_card', CandidateCardBlock(icon='user', label='Candidate Card')),
+    ('candidate_card', cards.CandidateCardBlock(icon='user', label='Candidate Card')),
     ('reusable_content', ReusableContentBlock()),
 ] + HTML_BLOCKS
 
@@ -32,13 +32,13 @@ LAYOUT_BLOCKS = [
 ]
 
 NAV_LINK_BLOCKS = [
-    ('page_link', PageNavLinkBlock()),
-    ('url_link', URLNavLinkBlock()),
-    ('email_link', EmailNavLinkBlock()),
-    ('phone_link', PhoneNavLinkBlock()),
-    ('sms_link', SMSNavLinkBlock()),
+    ('page_link', site.PageNavLinkBlock()),
+    ('url_link', site.URLNavLinkBlock()),
+    ('email_link', site.EmailNavLinkBlock()),
+    ('phone_link', site.PhoneNavLinkBlock()),
+    ('sms_link', site.SMSNavLinkBlock()),
 ]
 
 CAMPAIGN_POSITION_BLOCKS = [
-    ('representative', RepresentativePositionBlock()),
+    ('representative', campaign.RepresentativePositionBlock()),
 ]

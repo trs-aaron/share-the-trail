@@ -1,4 +1,3 @@
-from abc import abstractmethod
 from wagtail.core.blocks import BooleanBlock, CharBlock, EmailBlock, PageChooserBlock, StructBlock, StructValue, URLBlock
 
 

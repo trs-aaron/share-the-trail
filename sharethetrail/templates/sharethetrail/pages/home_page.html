@@ -1,10 +1,10 @@
-{% extends "sharethetrail/page.html" %}
+{% extends "sharethetrail/pages/page.html" %}
 {% load static wagtailcore_tags wagtailsettings_tags %}
 {% get_settings %}
 
 
 {% block body_content %}
-<div class="main-raised flex-grow-1 bg-secondary">
+<div class="main-raised flex-grow-1 bg-inverse">
     {% include_block page.body with settings=settings %}
 </div>
 {% endblock %}

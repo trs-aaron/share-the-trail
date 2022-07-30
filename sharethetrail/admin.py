@@ -1,5 +1,6 @@
 from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup, modeladmin_register
-from .models import Campaign, CampaignSite, CampaignIssue, Candidate, Issue
+from sharethetrail.models.campaign import Campaign, CampaignSite, CampaignIssue, Candidate, Issue
+from sharethetrail.models.snippets import MapSnippet
 
 
 class CampaignAdmin(ModelAdmin):
@@ -57,11 +58,22 @@ class IssueAdmin(ModelAdmin):
     search_fields = ('name',)
 
 
+class MapAdmin(ModelAdmin):
+    model = MapSnippet
+    menu_label = 'Maps'
+    menu_icon = 'site'
+    menu_order = 6
+    exclude_from_explorer = False
+    list_display = ('name',)
+    list_filter = ('name',)
+    search_fields = ('name',)
+
+
 class ShareTheTrailAdminGroup(ModelAdminGroup):
     menu_label = 'Share the Trail'
     menu_icon = 'cogs'
     menu_order = 1
-    items = (CampaignAdmin, CampaignSiteAdmin, CampaignIssueAdmin, CandidateAdmin, IssueAdmin)
+    items = (CampaignAdmin, CampaignSiteAdmin, CampaignIssueAdmin, CandidateAdmin, IssueAdmin, MapAdmin)
 
 
 modeladmin_register(ShareTheTrailAdminGroup)

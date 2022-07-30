@@ -4,7 +4,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 import encrypted_model_fields.fields
 import modelcluster.fields
-import sharethetrail.models.page_models
+import sharethetrail.models.pages
 import wagtail.core.blocks
 import wagtail.core.fields
 import wagtail.images.blocks
@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Home Page',
             },
-            bases=(sharethetrail.models.page_models.CampaignSitePageMixin, 'coderedcms.coderedpage'),
+            bases=(sharethetrail.models.pages.CampaignSitePageMixin, 'coderedcms.coderedpage'),
         ),
         migrations.CreateModel(
             name='Issue',
@@ -81,7 +81,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Web Page',
             },
-            bases=(sharethetrail.models.page_models.CampaignSitePageMixin, 'coderedcms.coderedpage'),
+            bases=(sharethetrail.models.pages.CampaignSitePageMixin, 'coderedcms.coderedpage'),
         ),
         migrations.CreateModel(
             name='CampaignSite',

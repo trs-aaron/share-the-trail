@@ -1,0 +1,38 @@
+{% extends "sharethetrail/pages/forms/base_form.html" %}
+
+{% block form %}
+<form role="form" id="contact-form" method="post">
+    {% csrf_token %}
+    <fieldset {% if form.processed is True %}disabled{% endif %}>
+        {% include 'sharethetrail/components/forms/inputs/text_input.html' with field=form.first_name %}
+        {% include 'sharethetrail/components/forms/inputs/text_input.html' with field=form.last_name %}
+        {% include 'sharethetrail/components/forms/inputs/email_input.html' with field=form.email %}
+        {% include 'sharethetrail/components/forms/inputs/phone_input.html' with field=form.phone %}
+    </fieldset>
+    {% if page.communication_enabled is True %}
+    <fieldset class="ml-4" {% if form.processed is True %}disabled{% endif %}>
+        {% include 'sharethetrail/components/forms/inputs/toggle_input.html' with field=form.communication_email %}
+        {% include 'sharethetrail/components/forms/inputs/toggle_input.html' with field=form.communication_text %}
+    </fieldset>
+    {% endif %}
+    {% if page.volunteer_enabled is True %}
+    <fieldset class="ml-4" {% if form.processed is True %}disabled{% endif %}>
+        {% include 'sharethetrail/components/forms/inputs/toggle_input.html' with field=form.volunteer_canvass %}
+        {% include 'sharethetrail/components/forms/inputs/toggle_input.html' with field=form.volunteer_call %}
+        {% include 'sharethetrail/components/forms/inputs/toggle_input.html' with field=form.volunteer_text %}
+        {% include 'sharethetrail/components/forms/inputs/toggle_input.html' with field=form.volunteer_write_postcards %}
+        {% include 'sharethetrail/components/forms/inputs/toggle_input.html' with field=form.volunteer_host_event %}
+    </fieldset>
+    {% endif %}
+    {% if page.merchandise_enabled is True %}
+    <fieldset class="ml-4" {% if form.processed is True %}disabled{% endif %}>
+        {% include 'sharethetrail/components/forms/inputs/toggle_input.html' with field=form.merchandise_yard_sign %}
+    </fieldset>
+    {% endif %}
+    {% if not form.processed %}
+    <div class="submit text-center mt-5">
+        <input type="submit" class="btn btn-info" value="submit request">
+    </div>
+    {% endif %}
+</form>
+{% endblock %}

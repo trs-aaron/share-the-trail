@@ -1,0 +1,19 @@
+{% extends "sharethetrail/pages/forms/base_form.html" %}
+
+{% block form %}
+<form readonly role="form" id="contact-form" method="post">
+    {% csrf_token %}
+    <fieldset {% if form.processed is True %}disabled{% endif %}>
+        {% include 'sharethetrail/components/forms/inputs/text_input.html' with field=form.first_name%}
+        {% include 'sharethetrail/components/forms/inputs/text_input.html' with field=form.last_name %}
+        {% include 'sharethetrail/components/forms/inputs/email_input.html' with field=form.email %}
+        {% include 'sharethetrail/components/forms/inputs/phone_input.html' with field=form.phone %}
+        {% include 'sharethetrail/components/forms/inputs/text_area_input.html' with field=form.message rows=6 %}
+    </fieldset>
+    {% if not form.processed %}
+    <div class="submit text-center mt-5">
+        <input type="submit" class="btn btn-info" value="Send message">
+    </div>
+    {% endif %}
+</form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'sharethetrail/components/forms/inputs/base_input.html' %}
+
+{% block input%}
+<div class="togglebutton">
+    <label for="{{ field.id_for_label }}" class="d-flex flex-row text-dark">
+        <input{% if disabled is True %} disabled {% endif %} type="checkbox" class="form-control shadow-none" id="{{ field.id_for_label }}" name="{{ field.name }}" {% if field.value is True %}checked{% endif %}>
+        <span class="toggle"></span>
+        {{ field.label|title }}
+    </label>
+</div>
+{% endblock %}

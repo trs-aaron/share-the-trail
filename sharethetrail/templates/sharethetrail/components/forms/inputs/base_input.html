@@ -1,0 +1,9 @@
+{% if field.has_error %}
+<div class="form-group bmd-form-group has-danger">
+{% elif field.has_valid_value %}
+<div class="form-group bmd-form-group has-success">
+{% else %}
+<div class="form-group bmd-form-group">
+{%  endif %}
+{% block input %}{% endblock %}
+</div>

@@ -1,0 +1,7 @@
+{% extends "sharethetrail/emails/text/base_email.txt" %}
+
+{% block body %}
+{% for field in form_data %}
+  {{ field.field_name|upper }} ::   {{ field.field_value }}
+{% endfor %}
+{% endblock body %}

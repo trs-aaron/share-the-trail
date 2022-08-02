@@ -142,7 +142,7 @@ SHARETHETRAIL_DEFAULT_THEME = "share-the-trail_theme-1"
 LOGIN_URL = "wagtailadmin_login"
 LOGIN_REDIRECT_URL = "wagtailadmin_home"
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = 'django_ses.SESBackend'
 
 WAGTAILSEARCH_BACKENDS = {
     "default": {

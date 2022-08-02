@@ -3,8 +3,9 @@ from django.utils.safestring import mark_safe
 from wagtail.core.models import StreamField
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from coderedcms.models import CoderedPage
-from sharethetrail.models.campaign import get_analytics_context, get_campaign_site_context
 from sharethetrail.blocks import LAYOUT_BLOCKS
+from sharethetrail.models.campaign import get_analytics_context, get_campaign_site_context
+from sharethetrail.models.form_pages import ContactPage, SignUpPage
 
 
 class CampaignSitePageMixin:
@@ -50,6 +51,8 @@ class HomePage(CampaignSitePageMixin, CoderedPage):
 
     subpage_types = [
         WebPage,
+        ContactPage,
+        SignUpPage,
     ]
 
     @property

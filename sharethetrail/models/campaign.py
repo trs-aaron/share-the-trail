@@ -316,10 +316,20 @@ def get_analytics_context(request):
 
     return analytics_context
 
+def get_campaign_site(request):
+    site = Site.find_for_request(request)
+    return site.campaign_sites.select_related('campaign__candidate').first()
+
+def get_campaign(request):
+    campaign_site = get_campaign_site(request)
+    return campaign_site.campaign
+
+def get_candidate(request):
+    campaign = get_campaign(request)
+    return campaign.candidate
 
 def get_campaign_site_context(request):
-    site = Site.find_for_request(request)
-    campaign_site = site.campaign_sites.select_related('campaign__candidate').first()
+    campaign_site = get_campaign_site(request)
 
     site_context = {
         'theme': DEFAULT_THEME,
@@ -346,3 +356,14 @@ def get_campaign_site_context(request):
         site_context['important_dates'] = map(lambda d: d.value, campaign_site.campaign.important_dates) if campaign_site.campaign.important_dates else None
 
     return site_context
+
+
+class CampaignSitePageMixin:
+
+    def get_context(self, request):
+        context = super(CampaignSitePageMixin, self).get_context(request)
+        context['campaign_site'] = get_campaign_site_context(request)
+        return context
+
+    class Meta:
+        abstract = True

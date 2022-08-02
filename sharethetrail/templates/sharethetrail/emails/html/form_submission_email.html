@@ -1,0 +1,33 @@
+{% extends "sharethetrail/emails/html/base_email.html" %}
+
+{% block body %}
+<table role="presentation" style="width:100%; border-collapse:collapse; border-spacing:0; text-align:center;">
+    {% if title is not None %}
+    <tr style="padding:20px 0; color:#002054; font-size:16px; font-weight:bold; text-align:center;">
+        <td>{{ title }}</td>
+    </tr>
+    {% endif %}
+    {% if description is not None %}
+    <tr style="padding:20px 0; color:#333333; font-size:14px; text-align:left;">
+        <td>{{ description }}</td>
+    </tr>
+    {% endif %}
+    <tr style="padding:20px 0; text-align:center;">
+        <td>
+            <table role="table" style="width:100%; border-spacing:1px; text-align:left;">
+                {% for field in form_data %}
+                <tr>
+                    <th style="background-color:#9DB7C4; padding:10px; text-align:left; vertical-align:top; font-weight:normal; color:#002054;">{{ field.field_name|title }}</th>
+                    <td style="background-color:#E9E9E9; padding:10px; text-align:left; vertical-align:center;">{{ field.field_value }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
+    </tr>
+    {% if footer is not None %}
+    <tr style="padding:20px 0; font-size:12px; font-weight:lighter; text-align:center; color:#333333;">
+        <td>{{ footer }}</td>
+    </tr>
+    {% endif %}
+</table>
+{% endblock body %}

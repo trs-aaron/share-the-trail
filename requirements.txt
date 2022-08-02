@@ -4,8 +4,9 @@ django-environ
 django-encrypted-model-fields
 django-health-check
 django-modelcluster
-django-storages
 django_sendmail_backend
+django-ses
+django-storages
 boto3
 psycopg2
 psutil

@@ -26,6 +26,14 @@ DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 MEDIA_ROOT = os.path.join(BASE_DIR, "../../data/media")
 MEDIA_URL = "media/"
 
+AWS_S3_REGION_NAME = "us-east-2"
+
+DEFAULT_FROM_EMAIL = "notifications@development.sharethetrail.net"
+AWS_SES_REGION_NAME = AWS_S3_REGION_NAME
+AWS_SES_REGION_ENDPOINT = f'email.{AWS_SES_REGION_NAME}.amazonaws.com'
+AWS_SES_ACCESS_KEY_ID = "AKIAV62DDAU2BIZPHEPG"
+AWS_SES_SECRET_ACCESS_KEY = "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"
+
 AWS_CW_RUM_REGION = "us-east-2"
 AWS_CW_RUM_CLIENT_URL = "https://client.rum.us-east-1.amazonaws.com/1.5.x/cwr.js"
 AWS_CW_RUM_ENDPOINT_URL = "https://dataplane.rum.us-east-2.amazonaws.com"

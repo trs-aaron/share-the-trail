@@ -26,6 +26,12 @@ DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 MEDIA_ROOT = os.path.join(BASE_DIR, "../../data/media")
 MEDIA_URL = "media/"
 
+AWS_CW_RUM_REGION = "us-east-2"
+AWS_CW_RUM_CLIENT_URL = "https://client.rum.us-east-1.amazonaws.com/1.5.x/cwr.js"
+AWS_CW_RUM_ENDPOINT_URL = "https://dataplane.rum.us-east-2.amazonaws.com"
+AWS_CW_RUM_ROLE_ARN = "arn:aws:iam::409773212980:role/sharethetrail-rum-monitor_role"
+AWS_CW_RUM_IDENTITY_POOL_ID = "us-east-2:26ce35a5-eb61-4cee-8586-0607e750c22a"
+
 WAGTAIL_THEME_PATH = STATIC_URL + "/css/themes"
 
 try:

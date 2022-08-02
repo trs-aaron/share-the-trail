@@ -63,6 +63,11 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https:\/\/\w+\.sharethetrail\.run$",
     r"^https:\/\/\w+\.sharethetrail\.democrat$",
     r"^https:\/\/\w+\.sharethetrail\.republican$",
+    r"^https:\/\/www\.google-analytics\.com$",
+    r"^https:\/\/www\.googletagmanager\.com$",
+    r"^https:\/\/cognito-identity\.\w+-\w+-\w+\.amazonaws\.com$",
+    r"^https:\/\/dataplane\.rum\.\w+-\w+-\w+\.amazonaws\.com$",
+    r"^https:\/\/sts\.\w+-\w+-\w+\.amazonaws\.com$",
 ]
 
 ROOT_URLCONF = "sharethetrail.urls"

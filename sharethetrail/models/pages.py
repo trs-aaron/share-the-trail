@@ -3,7 +3,7 @@ from django.utils.safestring import mark_safe
 from wagtail.core.models import StreamField
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from coderedcms.models import CoderedPage
-from sharethetrail.models.campaign import get_campaign_site_context
+from sharethetrail.models.campaign import get_analytics_context, get_campaign_site_context
 from sharethetrail.blocks import LAYOUT_BLOCKS
 
 
@@ -11,6 +11,7 @@ class CampaignSitePageMixin:
 
     def get_context(self, request):
         context = super(CampaignSitePageMixin, self).get_context(request)
+        context['analytics'] = get_analytics_context(request)
         context['campaign_site'] = get_campaign_site_context(request)
         return context
 

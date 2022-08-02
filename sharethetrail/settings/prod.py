@@ -66,6 +66,12 @@ MEDIA_ACL = None
 MEDIA_AWS_ACCESS_KEY_ID = env("MEDIA_AWS_ACCESS_KEY_ID", default=AWS_ACCESS_KEY_ID)
 MEDIA_AWS_SECRET_ACCESS_KEY = env("MEDIA_AWS_SECRET_ACCESS_KEY", default=AWS_SECRET_ACCESS_KEY)
 
+AWS_CW_RUM_REGION = "us-east-2"
+AWS_CW_RUM_CLIENT_URL = "https://client.rum.us-east-1.amazonaws.com/1.5.x/cwr.js"
+AWS_CW_RUM_ENDPOINT_URL = "https://dataplane.rum.us-east-2.amazonaws.com"
+AWS_CW_RUM_ROLE_ARN = "arn:aws:iam::409773212980:role/sharethetrail-rum-monitor_role"
+AWS_CW_RUM_IDENTITY_POOL_ID = "us-east-2:26ce35a5-eb61-4cee-8586-0607e750c22a"
+
 WAGTAIL_THEME_PATH = STATIC_URL + "/css/themes"
 
 try:

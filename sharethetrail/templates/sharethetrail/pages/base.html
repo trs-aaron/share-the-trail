@@ -17,8 +17,10 @@
         <script src="{% static 'js/lib/bootstrap-material-design.min.js' %}"></script>
         <script src="{% static 'js/lib/share-the-trail-kit.min.js' %}"></script>
         {% block extra_css %}{% endblock %}
+        {% include "sharethetrail/includes/analytics/aws_cw_rum_header.html" %}
     </head>
     <body>
+        {% include "sharethetrail/includes/analytics/google_script.html" %}
         {% block body %}{% endblock %}
     </body>
 </html>

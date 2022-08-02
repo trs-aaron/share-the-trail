@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.forms import CheckboxSelectMultiple, Select
 from django.db import models as django_models
-from django.db.models import CharField, EmailField, ForeignKey, Model, TextField, URLField
+from django.db.models import CharField, EmailField, ForeignKey, Model, TextField, URLField, UUIDField
 from encrypted_model_fields.fields import EncryptedCharField
 from modelcluster.models import ClusterableModel
 from modelcluster.fields import ParentalManyToManyField
@@ -179,8 +179,26 @@ class Campaign(Model):
         return self.name
 
 
-class CampaignSite(ClusterableModel):
-    name = CharField(db_column='name', max_length=100,)
+class AnalyticsMixin(Model):
+    google_tag_id = CharField(db_column='analytics_google_tag_id', max_length=30, blank=True, null=True)
+    aws_app_monitor_id = UUIDField(db_column='aws_app_monitor_id', max_length=30, blank=True, null=True)
+
+    edit_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('google_tag_id', heading='Google Tag ID', help_text='Google analytics tag id'),
+                FieldPanel('aws_app_monitor_id', heading='AWS App Monitor ID', help_text='AWS cloud watch app monitor id'),
+            ],
+            heading='Analytics',
+        ),
+    ]
+
+    class Meta:
+        abstract = True
+
+
+class CampaignSite(ClusterableModel, AnalyticsMixin):
+    name = CharField(db_column='name', max_length=100)
     campaign = ForeignKey(Campaign, db_column='campaign', related_name='+', on_delete=django_models.CASCADE)
     sites = ParentalManyToManyField(Site, related_name='campaign_sites')
     paid_for_by = CharField(db_column='paid_for_by', max_length=100, blank=True, null=True)
@@ -235,8 +253,11 @@ class CampaignSite(ClusterableModel):
         FieldPanel('footer_links', heading='Footer Links', help_text='Footer links'),
     ]
 
+    external_panels = AnalyticsMixin.edit_panels
+
     edit_handler = TabbedInterface([
         ObjectList(admin_panels, heading='Campaign Site'),
+        ObjectList(external_panels, heading='External'),
     ])
 
     def __str__(self):
@@ -273,6 +294,27 @@ class CampaignIssue(Model):
 
     def __str__(self):
         return f'{self.campaign } - {self.issue}/'
+
+
+def get_analytics_context(request):
+    site = Site.find_for_request(request)
+    campaign_site = site.campaign_sites.select_related('campaign__candidate').first()
+
+    analytics_context = {
+        'goggle_tag_id': DEFAULT_THEME,
+        'aws_app_monitor_id': None,
+        'aws_rum_region': getattr(settings, 'AWS_CW_RUM_REGION', None),
+        'aws_rum_client_url': getattr(settings, 'AWS_CW_RUM_CLIENT_URL', None),
+        'aws_rum_endpoint_url': getattr(settings, 'AWS_CW_RUM_ENDPOINT_URL', None),
+        'aws_rum_role_arn': getattr(settings, 'AWS_CW_RUM_ROLE_ARN', None),
+        'aws_rum_identity_pool_id': getattr(settings, 'AWS_CW_RUM_IDENTITY_POOL_ID', None),
+    }
+
+    if campaign_site is not None:
+        analytics_context['google_tag_id'] = getattr(campaign_site, 'google_tag_id', None)
+        analytics_context['aws_app_monitor_id'] = getattr(campaign_site, 'aws_app_monitor_id', None)
+
+    return analytics_context
 
 
 def get_campaign_site_context(request):

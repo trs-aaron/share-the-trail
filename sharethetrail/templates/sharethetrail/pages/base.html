@@ -5,8 +5,8 @@
     <head>
         <meta charset="utf-8" />
         <title>{% block title %}{% if campaign_site.title %}{{ campaign_site.title }}{% else %}Campaign Site{% endif %}{% endblock %}</title>
-        <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {% include "wagtailseo/meta.html" %}
         <link rel="icon" type="image/x-icon" href="{% block fav_icon %}{% static 'icon/default.ico' %}{% endblock %}" />
         {% theme_css_path campaign_site.theme as css_path %}
         <link rel="stylesheet" type="text/css" href="{% static css_path %}" />

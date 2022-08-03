@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include, path
 from django.contrib import admin
+from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from coderedcms import admin_urls as coderedadmin_urls
@@ -16,6 +17,7 @@ handler404 = error_404
 handler500 = error_500
 
 urlpatterns = [
+    path('sitemap.xml', sitemap),
     path('health/', include(healthcheck_urls)),
     path('django-admin/', admin.site.urls),
     path('admin/', include(coderedadmin_urls)),

@@ -9,8 +9,10 @@
     </div>
     <div class="card-body ">
         <h3 class="card-title text-primary mb-0">{{ campaign_site.candidate.full_name }}</h3>
+        {% if value.show_position is True %}
         <h6 class="card-category text-dark mb-0 mt-1">{{ campaign_site.election_position.heading }}</h6>
         <h6 class="card-title text-dark mb-0 mt-1">{{ campaign_site.election_position.subheading }}</h6>
+        {% endif %}
         <div class="card-description mt-4 align-self-start">{{ value.statement }}</div>
     </div>
 </div>

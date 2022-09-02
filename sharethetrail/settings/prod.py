@@ -13,7 +13,10 @@ SITE_VERSION = env.str("SITE_VERSION")
 ADMIN_HOST = env.str("ADMIN_HOST", default="sharethetrail.net")
 WAGTAIL_SITE_NAME = SITE_ID
 
-ALLOWED_HOSTS = [
+DOMAINS = env.list("DOMAINS", default=list())
+ORIGINS = list(map(lambda d: f'https://{d}', DOMAINS))
+
+ALLOWED_HOSTS = DOMAINS + [
     "3.137.207.202",
     "sharethetrail.net",
     ".sharethetrail.net",
@@ -26,7 +29,7 @@ ALLOWED_HOSTS = [
     "*",
 ]
 
-CSRF_TRUSTED_ORIGINS = [
+CSRF_TRUSTED_ORIGINS = ORIGINS + [
     f'https://{ADMIN_HOST}'
 ]
 

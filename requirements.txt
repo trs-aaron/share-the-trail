@@ -1,6 +1,6 @@
 coderedcms == 0.*
 django-cors-headers
-django-environ
+django-environ == 0.9.*
 django-encrypted-model-fields
 django-health-check
 django-modelcluster

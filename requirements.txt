@@ -1,4 +1,4 @@
-coderedcms
+coderedcms == 0.*
 django-cors-headers
 django-environ
 django-encrypted-model-fields
@@ -10,4 +10,5 @@ django-storages
 boto3
 psycopg2
 psutil
+wagtail == 2.*
 # django-iam-dbauth

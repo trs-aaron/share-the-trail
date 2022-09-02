@@ -1,6 +1,6 @@
 from django.db.models import CharField, Model
 from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.core.fields import StreamField
+from wagtail.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from sharethetrail.blocks.maps import ImagePreviewMapBlock
 
@@ -16,6 +16,7 @@ class MapSnippet(Model):
         max_num=1,
         blank=True,
         null=True,
+        use_json_field=True,
     )
 
     panels = [

@@ -1,4 +1,4 @@
-from wagtail.core.blocks import BooleanBlock, CharBlock, EmailBlock, PageChooserBlock, StructBlock, StructValue, URLBlock
+from wagtail.blocks import BooleanBlock, CharBlock, EmailBlock, PageChooserBlock, StructBlock, StructValue, URLBlock
 
 
 class NavLinkBlock(StructBlock):

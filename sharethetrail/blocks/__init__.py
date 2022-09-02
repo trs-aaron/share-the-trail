@@ -2,7 +2,7 @@ from . import campaign
 from . import cards
 from . import site
 
-from wagtail.core.blocks import RawHTMLBlock, RichTextBlock
+from wagtail.blocks import RawHTMLBlock, RichTextBlock
 from coderedcms.blocks import CardGridBlock, GridBlock, ReusableContentBlock
 
 

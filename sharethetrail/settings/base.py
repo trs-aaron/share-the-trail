@@ -5,6 +5,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
     "sharethetrail",
+    "coderedcms_bootstrap4",
     "coderedcms",
     "bootstrap4",
     "modelcluster",
@@ -14,7 +15,7 @@ INSTALLED_APPS = [
     "wagtail.contrib.settings",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.table_block",
-    "wagtail.core",
+    "wagtail",
     "wagtail.documents",
     "wagtail.embeds",
     "wagtail.images",

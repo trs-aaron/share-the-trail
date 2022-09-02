@@ -1,4 +1,4 @@
-from wagtail.core.blocks import CharBlock, DateBlock, StructBlock, StructValue
+from wagtail.blocks import CharBlock, DateBlock, StructBlock, StructValue
 
 
 class ImportantDateBlock(StructBlock):

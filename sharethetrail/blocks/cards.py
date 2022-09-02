@@ -1,4 +1,4 @@
-from wagtail.core.blocks import BooleanBlock, CharBlock, PageChooserBlock, RichTextBlock, StructBlock, StructValue, URLBlock
+from wagtail.blocks import BooleanBlock, CharBlock, PageChooserBlock, RichTextBlock, StructBlock, StructValue, URLBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from sharethetrail.models.snippets import MapSnippet

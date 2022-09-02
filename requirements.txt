@@ -1,14 +1,15 @@
-coderedcms == 0.*
-django-cors-headers
+boto3 == 1.*
+coderedcms == 1.*
+coderedcms-bootstrap4 == 1.*
+django-cors-headers == 3.*
 django-environ == 0.9.*
-django-encrypted-model-fields
-django-health-check
-django-modelcluster
-django_sendmail_backend
-django-ses
-django-storages
-boto3
-psycopg2
-psutil
-wagtail == 2.*
+django-encrypted-model-fields == 0.6.*
+django-health-check == 3.*
+django-modelcluster == 6.*
+django_sendmail_backend == 0.1.*
+django-ses == 3.*
+django-storages == 1.*
+psycopg2 == 2.*
+psutil == 5.*
+wagtail == 3.*
 # django-iam-dbauth

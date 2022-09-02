@@ -6,8 +6,8 @@ from encrypted_model_fields.fields import EncryptedCharField
 from modelcluster.models import ClusterableModel
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, ObjectList, TabbedInterface
-from wagtail.core.fields import StreamField
-from wagtail.core.models import Site
+from wagtail.fields import StreamField
+from wagtail.models import Site
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.documents.models import Document
 from sharethetrail.blocks import CAMPAIGN_POSITION_BLOCKS, NAV_LINK_BLOCKS
@@ -122,6 +122,7 @@ class Campaign(Model):
         max_num=1,
         blank=True,
         null=True,
+        use_json_field=True,
     )
 
     important_dates = StreamField(
@@ -132,6 +133,7 @@ class Campaign(Model):
         min_num=0,
         blank=True,
         null=True,
+        use_json_field=True,
     )
 
     admin_panels = [
@@ -214,6 +216,7 @@ class CampaignSite(ClusterableModel, AnalyticsMixin):
         max_num=4,
         blank=True,
         null=True,
+        use_json_field=True,
     )
 
     footer_links = StreamField(
@@ -223,6 +226,7 @@ class CampaignSite(ClusterableModel, AnalyticsMixin):
         max_num=4,
         blank=True,
         null=True,
+        use_json_field=True,
     )
 
     admin_panels = [

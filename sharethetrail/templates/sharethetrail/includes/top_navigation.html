@@ -1,18 +1,20 @@
-<nav class="navbar navbar-expand-lg sticky-top shadow-none m-0 py-3 px-4 px-lg-5 rounded-0 bg-primary">
-    <div class="navbar-brand">
-        {% if campaign_site.top_nav_logo_svg %}
-        <a class="" href="/">
-            {{ campaign_site.top_nav_logo_svg|safe }}
-        </a>
-        {% endif %}
+<nav class="navbar navbar-expand-lg flex-column flex-lg-row sticky-top shadow-none m-0 py-3 px-4 px-lg-5 rounded-0 bg-primary">
+    <div class="d-flex flex-row justify-content-between w-100 w-lg-auto">
+        <div class="navbar-brand">
+            {% if campaign_site.top_nav_logo_svg %}
+            <a class="" href="/">
+                {{ campaign_site.top_nav_logo_svg|safe }}
+            </a>
+            {% endif %}
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#stt-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#stt-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="navbar-toggler-icon"></span>
-        <span class="navbar-toggler-icon"></span>
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div id="stt-navbar-collapse" class="d-lg-flex flex-grow-1 collapse min mx-0">
+    <div id="stt-navbar-collapse" class="d-lg-flex flex-grow-1 collapse w-100 w-lg-auto mx-0">
         <ul class="navbar-nav flex-grow-1 flex-gap-1 flex-lg-column-gap-3 align-self-end justify-content-center my-1 my-lg-0">
             {% for link in campaign_site.top_nav_links %}
             <li class="nav-item">

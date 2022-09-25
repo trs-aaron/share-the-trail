@@ -16,7 +16,7 @@ class CandidateCardBlock(StructBlock):
 
 class ElectionInformationCardBlock(StructBlock):
     show_position = BooleanBlock(label='Show Position Information', required=False)
-    show_important_dates = BooleanBlock(label='Show Position Information', required=False)
+    show_important_dates = BooleanBlock(label='Show Important Dates', required=False)
     map = SnippetChooserBlock(MapSnippet, label='Map', required=False)
 
     class Meta:

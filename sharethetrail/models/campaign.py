@@ -344,6 +344,9 @@ def get_campaign_site_context(request):
         'footer_links': [],
         'paid_for_by': None,
         'campaign': None,
+        'candidate': None,
+        'election_position': None,
+        'important_dates': None,
     }
 
     if campaign_site is not None:
@@ -351,13 +354,13 @@ def get_campaign_site_context(request):
         site_context['title'] = getattr(campaign_site, 'title', None)
         site_context['fav_icon'] = campaign_site.fav_icon
         site_context['top_nav_logo_svg'] = minidom.parse(campaign_site.top_nav_logo.file).toxml() if campaign_site.top_nav_logo else None
-        site_context['top_nav_links'] = map(lambda l: l.value, campaign_site.top_nav_links)
-        site_context['footer_links'] = map(lambda l: l.value, campaign_site.footer_links)
+        site_context['top_nav_links'] = list(map(lambda l: l.value, campaign_site.top_nav_links))
+        site_context['footer_links'] = list(map(lambda l: l.value, campaign_site.footer_links))
         site_context['paid_for_by'] = campaign_site.paid_for_by
         site_context['campaign'] = campaign_site.campaign
         site_context['candidate'] = campaign_site.campaign.candidate
         site_context['election_position'] = campaign_site.campaign.election_position[0].value
-        site_context['important_dates'] = map(lambda d: d.value, campaign_site.campaign.important_dates) if campaign_site.campaign.important_dates else None
+        site_context['important_dates'] = list(map(lambda d: d.value, campaign_site.campaign.important_dates)) if campaign_site.campaign.important_dates else None
 
     return site_context
 

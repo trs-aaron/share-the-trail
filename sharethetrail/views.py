@@ -1,5 +1,8 @@
-from django.shortcuts import render
-from sharethetrail.models.campaign import get_campaign_site_context
+from django.http import Http404
+from django.shortcuts import redirect, render
+from django.views import View
+from wagtail.views import serve
+from sharethetrail.models.campaign import get_campaign, get_campaign_site_context
 
 
 def render_with_campaign_site_context(request, template_name, context=None, status=200):
@@ -45,3 +48,25 @@ def error_500(request):
     }
 
     return render_with_campaign_site_context(request, 'sharethetrail/error/error.html', context, 500)
+
+
+class DonateView(View):
+
+    def get(self, request, *args, **kwargs):
+        try:
+            page_response = serve(request, request.path)
+        except Http404:
+            page_response = None
+
+        if page_response:
+            return page_response
+        else:
+            campaign = get_campaign(request)
+
+            if campaign is not None and campaign.donation_url is not None:
+                return redirect(
+                    to=campaign.donation_url,
+                    permanent=False,
+                )
+
+        raise Http404

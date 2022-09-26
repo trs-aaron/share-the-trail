@@ -1,0 +1,57 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="subscribe-line w-100">
+    <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-between w-100">
+        <div class="mb-3 mb-lg-0 mr-lg-5">
+            <h2 class="h2 title text-center text-dark text-small-caps m-0">{{ value.title }}</h2>
+        </div>
+        <div class="card card-raised card-form-horizontal flex-grow-1 w-lg-auto m-0">
+            <div class="card-body">
+                <form method="post" action="{% pageurl value.form_page %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6 ">
+                            <span class="bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">mail</i>
+                                        </span>
+                                    </div>
+                                    <input type="email" name="email" value="" placeholder="Your Email..." class="form-control shadow-none">
+                                    {% if value.default_communication_email is True %}
+                                    <input type="hidden" name="communication_email" value="1">
+                                    {% endif %}
+                                    {% if value.default_communication_text  is True %}
+                                    <input type="hidden" name="communication_text" value="1">
+                                    {% endif %}
+                                    {% if value.default_merchandise_yard_sign  is True %}
+                                    <input type="hidden" name="merchandise_yard_sign" value="1">
+                                    {% endif %}
+                                    {% if value.default_volunteer_canvass  is True %}
+                                    <input type="hidden" name="volunteer_canvass" value="1">
+                                    {% endif %}
+                                    {% if value.default_volunteer_call  is True %}
+                                    <input type="hidden" name="volunteer_call" value="1">
+                                    {% endif %}
+                                    {% if value.default_volunteer_text  is True %}
+                                    <input type="hidden" name="volunteer_text" value="1">
+                                    {% endif %}
+                                    {% if value.default_volunteer_write_postcards  is True %}
+                                    <input type="hidden" name="volunteer_write_postcards" value="1">
+                                    {% endif %}
+                                    {% if value.default_volunteer_host_event  is True %}
+                                    <input type="hidden" name="volunteer_host_event" value="1">
+                                    {% endif %}
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-lg-4 col-md-6 ">
+                            <button type="submit" class="btn btn-info btn-block">{{ value.submit_bttn_label }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

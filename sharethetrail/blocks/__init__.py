@@ -17,11 +17,11 @@ CARD_GRID_BLOCKS = [
     ('image_page_link_card', cards.ImagePageLinkCardBlock(icon='image', label='Image Page Link Card')),
     ('image_url_link_card', cards.ImageURLLinkCardBlock(icon='image', label='Image URL Link Card')),
     ('issue_flip_card', cards.IssueFlipCardBlock(icon='list-ul', label='Issue Flip Card')),
-
 ]
 
 CONTENT_BLOCKS = CARD_GRID_BLOCKS + [
     ('candidate_card', cards.CandidateCardBlock(icon='user', label='Candidate Card')),
+    ('sign_up_card', cards.SignUpCardBlock(icon='user', label='Sign Up Card')),
     ('reusable_content', ReusableContentBlock()),
 ] + HTML_BLOCKS
 

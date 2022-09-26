@@ -14,6 +14,27 @@ class CandidateCardBlock(StructBlock):
         template = 'sharethetrail/blocks/cards/candidate_card_block.html'
 
 
+class SignUpCardBlock(StructBlock):
+    title = CharBlock(label='Title', required=True)
+    submit_bttn_label = CharBlock(label='Submit Button Label', required=True)
+    form_page = PageChooserBlock(label='Form Page', required=True)
+
+    default_communication_email = BooleanBlock(label='Default - Receive Campaign Emails', required=False)
+    default_communication_text = BooleanBlock(label='Default - Receive Campaign Texts', required=False)
+
+    default_merchandise_yard_sign = BooleanBlock(label='Default - Request Yard Sign', required=False)
+
+    default_volunteer_canvass = BooleanBlock(label='Default - Knock on Doors', required=False)
+    default_volunteer_call = BooleanBlock(label='Default - Call Voters', required=False)
+    default_volunteer_text = BooleanBlock(label='Default - Text Voters', required=False)
+    default_volunteer_write_postcards = BooleanBlock(label='Default - Write Postcards', required=False)
+    default_volunteer_host_event = BooleanBlock(label='Default - Host Event', required=False)
+
+    class Meta:
+        label = 'Sign Up Card'
+        icon = 'user'
+        template = 'sharethetrail/blocks/cards/sign_up_card_block.html'
+
 class ElectionInformationCardBlock(StructBlock):
     show_position = BooleanBlock(label='Show Position Information', required=False)
     show_important_dates = BooleanBlock(label='Show Important Dates', required=False)

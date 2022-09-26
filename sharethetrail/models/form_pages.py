@@ -1,6 +1,8 @@
 from django.db import models
 from django.forms import BoundField, BooleanField, CharField, EmailField, Form, Textarea
+from django.http.request import QueryDict
 from django.shortcuts import render
+from django.utils.datastructures import MultiValueDict
 from coderedcms.models import CoderedPage
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from sharethetrail.models.campaign import CampaignSitePageMixin, get_campaign
@@ -20,6 +22,15 @@ class BaseForm(Form):
 
     def process(self, *args, **kwargs):
         self.__processed__ = True
+
+    def clean_initial_data(self):
+        cleaned_data = MultiValueDict()
+
+        for field, value in self.initial.items():
+            if field in self.fields:
+                cleaned_data[field] = self.fields[field].to_python(value)
+
+        self.initial = cleaned_data
 
     class Meta:
         abstract = True
@@ -41,21 +52,28 @@ class BaseFormPage(CampaignSitePageMixin, CoderedPage):
 
     def serve(self, request):
         if request.method == 'POST' :
-            form = self.get_form(request.POST)
+            form = self.get_form(data=request.POST.copy())
 
             if form.is_valid():
                 campaign = get_campaign(request)
                 contact_email = campaign.contact_email if campaign is not None else None
                 form.process(send_to=contact_email)
                 return self.render_success(request, form)
-
         else:
-            form = self.get_form()
+            form = self.get_form(initial=request.GET.copy())
 
         return self.render_form(request, form)
 
-    def get_form(self, data=None):
-        pass;
+    def get_form(self, data=None, initial=None):
+        if data is not None:
+            return self.FormMeta.form_class(data=data)
+
+        if initial is not None:
+            form = self.FormMeta.form_class(initial=initial)
+            form.clean_initial_data()
+            return form
+
+        return self.FormMeta.form_class()
 
     def handle_post(self, data):
         pass
@@ -64,18 +82,19 @@ class BaseFormPage(CampaignSitePageMixin, CoderedPage):
         context = super(BaseFormPage, self).get_context(request)
         context['page'] = self
         context['form'] = form
-        return render(request, self.TemplateMeta.form_template, context)
+        return render(request, self.FormMeta.form_template, context)
 
     def render_success(self, request, form=None):
         context = super(BaseFormPage, self).get_context(request)
         context['page'] = self
         context['form'] = form
-        return render(request, self.TemplateMeta.success_template, context)
+        return render(request, self.FormMeta.success_template, context)
 
     class Meta:
         abstract = True
 
-    class TemplateMeta:
+    class FormMeta:
+        form_class = None
         form_template = None
         success_template = None
 
@@ -109,16 +128,11 @@ class ContactForm(BaseForm):
 
 class ContactPage(BaseFormPage):
 
-    def get_form(self, data=None):
-        if data is not None:
-            return ContactForm(data)
-
-        return ContactForm()
-
     class Meta:
         verbose_name = 'Contact Page'
 
-    class TemplateMeta:
+    class FormMeta:
+        form_class = ContactForm
         form_template = 'sharethetrail/pages/forms/contact/form_page.html'
         success_template = 'sharethetrail/pages/forms/contact/form_page.html'
 
@@ -178,15 +192,10 @@ class SignUpPage(BaseFormPage):
         ),
     ]
 
-    def get_form(self, data=None):
-        if data is not None:
-            return SignUpForm(data)
-
-        return SignUpForm()
-
     class Meta:
         verbose_name = 'Sign Up Page'
 
-    class TemplateMeta:
+    class FormMeta:
+        form_class = SignUpForm
         form_template = 'sharethetrail/pages/forms/sign_up/form_page.html'
         success_template = 'sharethetrail/pages/forms/sign_up/form_page.html'

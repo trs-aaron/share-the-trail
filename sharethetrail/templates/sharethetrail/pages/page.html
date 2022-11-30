@@ -4,13 +4,13 @@
 {% block fav_icon %}{{ campaign_site.fav_icon.url }}{% endblock %}
 
 {% block body %}
-<div class="d-flex flex-column min-vh-100 bg-primary">
+<div class="d-flex flex-column min-vh-100 bg-secondary">
     {% include 'sharethetrail/includes/top_navigation.html' %}
     {% if page.cover_image is not None %}
     {% image page.cover_image height-400 as cover_image %}
     <div class="page-header page-header-short-lg" style="background: url({{ cover_image.url }}) no-repeat center; background-size: cover;" data-parallax="true"></div>
     {% endif %}
-    <main class="main d-flex flex-column flex-grow-1 mt-0 bg-primary">
+    <main class="main d-flex flex-column flex-grow-1 mt-0 bg-secondary">
         {% block body_content %}{% endblock %}
     </main>
     {% include 'sharethetrail/includes/footer.html' %}

@@ -1,7 +1,7 @@
 from django.utils.html import strip_tags
 from django.utils.safestring import mark_safe
 from wagtail.fields import StreamField
-from wagtail.admin.edit_handlers import StreamFieldPanel
+from wagtail.admin.panels import FieldPanel
 from coderedcms.models import CoderedPage
 from sharethetrail.blocks import LAYOUT_BLOCKS
 from sharethetrail.models.campaign import get_analytics_context, get_campaign_site_context
@@ -31,7 +31,7 @@ class WebPage(CampaignSitePageMixin, CoderedPage):
     )
 
     body_content_panels = [
-        StreamFieldPanel('body'),
+        FieldPanel('body'),
     ]
 
     @property
@@ -56,7 +56,7 @@ class HomePage(CampaignSitePageMixin, CoderedPage):
     )
 
     body_content_panels = [
-        StreamFieldPanel('body'),
+        FieldPanel('body'),
     ]
 
     subpage_types = [

@@ -1,5 +1,5 @@
 from django.db.models import CharField, Model
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from sharethetrail.blocks.maps import ImagePreviewMapBlock

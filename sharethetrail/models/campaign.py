@@ -5,10 +5,9 @@ from django.db.models import CharField, EmailField, ForeignKey, Model, TextField
 from encrypted_model_fields.fields import EncryptedCharField
 from modelcluster.models import ClusterableModel
 from modelcluster.fields import ParentalManyToManyField
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, ObjectList, TabbedInterface
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, ObjectList, TabbedInterface
 from wagtail.fields import StreamField
 from wagtail.models import Site
-from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.documents.models import Document
 from sharethetrail.blocks import CAMPAIGN_POSITION_BLOCKS, NAV_LINK_BLOCKS
 from sharethetrail.blocks.campaign import ImportantDateBlock
@@ -243,13 +242,13 @@ class CampaignSite(ClusterableModel, AnalyticsMixin):
                 FieldPanel('theme', heading='Theme', help_text='Site theme', widget=Select(choices=THEMES)),
                 FieldPanel('title', heading='Title', help_text='Site title'),
                 FieldPanel('paid_for_by', heading='Paid for By', help_text='Text to display for Paid for By'),
-                DocumentChooserPanel('fav_icon', heading='Favicon', help_text='Site Favicon'),
+                FieldPanel('fav_icon', heading='Favicon', help_text='Site Favicon'),
             ],
             heading='Site Display',
         ),
         MultiFieldPanel(
             [
-                DocumentChooserPanel('top_nav_logo', heading='Top Navigation', help_text='Logo used in top navigation'),
+                FieldPanel('top_nav_logo', heading='Top Navigation', help_text='Logo used in top navigation'),
             ],
             heading='Logos',
         ),

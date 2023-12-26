@@ -4,7 +4,7 @@ from django.http.request import QueryDict
 from django.shortcuts import render
 from django.utils.datastructures import MultiValueDict
 from coderedcms.models import CoderedPage
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from sharethetrail.models.campaign import CampaignSitePageMixin, get_campaign
 from sharethetrail.emails.email_templates import FormSubmissionEmail
 

@@ -14,7 +14,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "../../data/sharethetrail.sqlite3"),
+        "NAME": os.path.join(BASE_DIR, ".data/sharethetrail.sqlite3"),
     }
 }
 
@@ -23,7 +23,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "static/"
 
 DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
-MEDIA_ROOT = os.path.join(BASE_DIR, "../../data/media")
+MEDIA_ROOT = os.path.join(BASE_DIR, ".data/media")
 MEDIA_URL = "media/"
 
 AWS_S3_REGION_NAME = "us-east-2"

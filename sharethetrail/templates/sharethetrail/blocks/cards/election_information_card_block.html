@@ -2,7 +2,7 @@
 {% load snippet_tags %}
 
 {% block card_content %}
-<div class="card align-items-center bg-dark mb-0 mx-0 pb-3">
+<div class="card align-items-center bg-secondary mb-0 mx-0 pb-3">
     {% if value.map is not None %}
     <div class="card-header p-0">
         {% include_map value.map %}
@@ -10,7 +10,7 @@
     {% endif %}
     <div class="card-body mt-3 mx-3 p-0">
         {% if value.show_position is True %}
-        <div class="h5 text-dark text-small-caps text-center mb-0 mt-0">{{ campaign_site.election_position.subheading }}</div>
+        <div class="h5 text-info text-small-caps text-center mb-0 mt-0">{{ campaign_site.election_position.subheading }}</div>
         <div class="h6 text-muted text-center mb-0 mt-0">{{ campaign_site.election_position.heading }}</div>
         {% endif %}
         {% if value.show_important_dates is True and campaign_site.important_dates is not None %}

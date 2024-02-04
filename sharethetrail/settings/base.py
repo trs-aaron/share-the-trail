@@ -136,7 +136,8 @@ SHARETHETRAIL_THEMES = [
     ("share-the-trail_theme-1", "Share The Trail - 1"),
     ("share-the-trail_theme-2", "Share The Trail - 2"),
     ("share-the-trail_theme-3", "Share The Trail - 3"),
-    ("medford-cardinals_theme-1", "Medford Cardinals - 1")
+    ("medford-cardinals_theme-1", "Medford Cardinals - 1"),
+    ("the-ronald-solutions_theme-1", "TRS - 1")
 ]
 
 SHARETHETRAIL_DEFAULT_THEME = "share-the-trail_theme-1"

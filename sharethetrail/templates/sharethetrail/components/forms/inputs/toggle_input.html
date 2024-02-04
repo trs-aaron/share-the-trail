@@ -2,9 +2,9 @@
 
 {% block input%}
 <div class="togglebutton">
-    <label for="{{ field.id_for_label }}" class="d-flex flex-row text-light">
+    <label for="{{ field.id_for_label }}" class="d-flex flex-row">
         <input{% if disabled is True %} disabled {% endif %} type="checkbox" class="form-control shadow-none bg-primary" id="{{ field.id_for_label }}" name="{{ field.name }}" {% if field.value is True %}checked{% endif %}>
-        <span class="toggle bg-inverse"></span>
+        <span class="toggle"></span>
         {{ field.label|title }}
     </label>
 </div>

@@ -89,6 +89,7 @@ class ImageURLLinkCardBlock(ImageLinkCardBlock):
 
 class IssueFlipCardBlock(StructBlock):
     title = CharBlock(label='Title', required=True)
+    summary = CharBlock(label='Summary', required=False)
     statement = RichTextBlock(label='Statement', required=True)
     color = CharBlock(label='Color', required=True)
     front_image = ImageChooserBlock(label='Front Image', required=True)

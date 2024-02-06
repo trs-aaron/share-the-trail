@@ -27,8 +27,11 @@
         <div class="back back-background" style="background-color: {{ value.color }}">
         {% endif %}
             <div class="card-body p-4">
-                <div class="h3 card-title font-weight-bolder text-small-caps letter-spacing-small mb-4">{{ value.title }}</div>
-                <div class="card-description d-flex flex-column flex-grow-1 justify-content-center">{{ value.statement }}</div>
+                <div class="card-title h2 text-light-emphasis text-left text-small-caps letter-spacing-small mb-4">{{ value.title }}</div>
+                <div class="card-description d-flex flex-column flex-grow-1 text-light text-left justify-content-center">{{ value.statement }}</div>
+                {% if value.summary %}
+                <div class="card-description lead text-light-emphasis text-left mt-4">{{ value.summary }}</div>
+                {% endif %}
             </div>
         </div>
     </div>

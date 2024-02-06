@@ -11,8 +11,8 @@
         {% include 'sharethetrail/components/forms/inputs/text_area_input.html' with field=form.message rows=6 %}
     </fieldset>
     {% if not form.processed %}
-    <div class="submit text-center mt-4">
-        <input type="submit" class="btn btn-info" value="Send message">
+    <div class="submit text-center mt-4 mx-lg-5 px-lg-5">
+        <input type="submit" class="btn btn-info btn-block p-4" value="Send message">
     </div>
     {% endif %}
 </form>

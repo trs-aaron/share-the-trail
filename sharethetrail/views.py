@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.views import View
+from django.views.decorators.clickjacking import xframe_options_exempt
 from wagtail.views import serve
 from sharethetrail.models.campaign import get_campaign, get_campaign_site_context
 
@@ -39,6 +40,15 @@ def error_404(request, exception):
     }
 
     return render_with_campaign_site_context(request, 'sharethetrail/error/error.html', context, 404)
+
+
+@xframe_options_exempt
+def external(request, name):
+    try:
+        template_name = 'sharethetrail/external/{}.html'.format(name)
+        return render_with_campaign_site_context(request, template_name)
+    except Http404 as e:
+        raise Http404
 
 
 def error_500(request):

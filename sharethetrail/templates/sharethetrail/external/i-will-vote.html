@@ -1,0 +1,21 @@
+{% load static theme_tags %}
+{% theme_css_path campaign_site.theme as css_path %}
+
+<!DOCTYPE html>
+<html lang="en" style="font-size: 16px !important;">
+    <head>
+        <meta charset="UTF-8">
+        <title>I Will Vote</title>
+        <link href="https://iwillvote.com/locate/widget-v2.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="{% static css_path %}" />
+        <script src="https://iwillvote.com/locate/widget-v2.js"></script>
+    </head>
+    <body class="bg-transparent p-4 overflow-hidden">
+        <div id="i-will-vote-widget"></div>
+        <script type="text/javascript">
+            IWillVoteLocationSearch.init({
+                showHeader: true
+            });
+        </script>
+    </body>
+</html>

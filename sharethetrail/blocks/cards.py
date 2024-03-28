@@ -35,6 +35,7 @@ class SignUpCardBlock(StructBlock):
         icon = 'user'
         template = 'sharethetrail/blocks/cards/sign_up_card_block.html'
 
+
 class ElectionInformationCardBlock(StructBlock):
     show_position = BooleanBlock(label='Show Position Information', required=False)
     show_important_dates = BooleanBlock(label='Show Important Dates', required=False)
@@ -99,3 +100,11 @@ class IssueFlipCardBlock(StructBlock):
         label = 'Issue Flip Card'
         icon = 'list-ul'
         template = 'sharethetrail/blocks/cards/issue_flip_card_block.html'
+
+
+class IWillVoteCardBlock(StructBlock):
+
+    class Meta:
+        label = 'I Will Vote Card'
+        icon = 'user'
+        template = 'sharethetrail/blocks/cards/i_will_vote_card_block.html'

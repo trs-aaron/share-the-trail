@@ -17,6 +17,7 @@ CARD_GRID_BLOCKS = [
     ('image_page_link_card', cards.ImagePageLinkCardBlock(icon='image', label='Image Page Link Card')),
     ('image_url_link_card', cards.ImageURLLinkCardBlock(icon='image', label='Image URL Link Card')),
     ('issue_flip_card', cards.IssueFlipCardBlock(icon='list-ul', label='Issue Flip Card')),
+    ('i_will_vote_card', cards.IWillVoteCardBlock(icon='user', label='I Will Vote Card')),
 ]
 
 CONTENT_BLOCKS = CARD_GRID_BLOCKS + [

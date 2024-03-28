@@ -8,7 +8,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from coderedcms import admin_urls as coderedadmin_urls
 from coderedcms import urls as codered_urls
 from health_check import urls as healthcheck_urls
-from sharethetrail.views import error_400, error_403, error_404, error_500, DonateView
+from sharethetrail.views import error_400, error_403, error_404, error_500, external, DonateView
 
 
 handler400 = error_400
@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', include(coderedadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
     path('donate/', DonateView.as_view()),
+    path('external/<str:name>/', external),
     path('', include(wagtail_urls)),
     path('', include(codered_urls)),
 ]
